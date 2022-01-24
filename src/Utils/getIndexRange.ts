@@ -5,7 +5,7 @@ import Range from "./Range";
  *
  * @param page page number
  * @param numOfStudents total number of students
- * @returns {Range}
+ * @returns {Range} range of indexes
  */
 const getIndexRange = (page: number, numOfStudents: number): Range => {
   let from = (page - 1) * MAX_STUDENTS_PER_PAGE;

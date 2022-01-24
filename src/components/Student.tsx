@@ -6,7 +6,7 @@ const Student: React.FC<{
   email: string;
   graduated: boolean;
 }> = (props) => {
-  return <div>{props.name}</div>;
+  return <li>{props.name}</li>;
 };
 
 export default Student;
