@@ -10,6 +10,7 @@ import getIndexRange from "../Utils/getIndexRange";
 import Students from "./Students";
 import StudentModel from "../models/StudentModel";
 import PaginationList from "./PaginationList";
+import getStartPageOffset from "../Utils/getStartPageOffset";
 
 const Pagination: React.FC<{
   students: StudentModel[];
@@ -43,19 +44,11 @@ const Pagination: React.FC<{
   const getDisplayedPages = (): number[] => {
     // Display maximum 3 pages anchors
     let maxPagesToDisplay = Math.min(INITIAL_NUM_PAGES_TO_DISPLAY, pages);
-    // The common case
-    let startPageOffset =
-      Math.floor((currPage - 1) / maxPagesToDisplay) * maxPagesToDisplay;
-    // If reached to the end of the displayed panigation list
-    // and the number of hidden pages left is less then the total number of pages
-    // then start from an offset that will allow to display the required number of pages
-    // until the last page
-    if (
-      (currPage - 1) % maxPagesToDisplay === 0 &&
-      pages - currPage < maxPagesToDisplay
-    ) {
-      startPageOffset = pages - maxPagesToDisplay;
-    }
+    let startPageOffset = getStartPageOffset(
+      currPage,
+      pages,
+      maxPagesToDisplay
+    );
 
     return getConsecutivePages(startPageOffset, maxPagesToDisplay);
   };
