@@ -13,9 +13,10 @@ import PaginationList from "./PaginationList";
 import getStartPageOffset from "../Utils/getStartPageOffset";
 
 const Pagination: React.FC<{
-  students: StudentModel[];
-  title: string;
-  maxStudentsPerPage: number;
+  students: StudentModel[],
+  title: string,
+  maxStudentsPerPage: number,
+  onStudentClick:(id:string)=>void
 }> = (props) => {
   const [currPage, setCurrPage] = useState(1);
   const pages = calcPages(props.students.length);
@@ -56,7 +57,7 @@ const Pagination: React.FC<{
     <div>
       <h1>{props.title}</h1>
       <main>
-        <Students students={getModelsInRange()} />
+        <Students students={getModelsInRange()} onStudentClick={props.onStudentClick} />
       </main>
       <PaginationList
         pagesToDisplay={getDisplayedPages()}

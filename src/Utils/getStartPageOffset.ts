@@ -1,3 +1,10 @@
+/**
+ *
+ * @param currPage the current page
+ * @param pages the total number of pages
+ * @param maxPagesToDisplay maximum number of pages to display in a pagination list
+ * @returns a start offset for updating the displayed pagination list
+ */
 const getStartPageOffset = (
   currPage: number,
   pages: number,

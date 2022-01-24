@@ -1,12 +1,12 @@
-const Student: React.FC<{
-  name: string;
-  age: number;
-  gender: string;
-  school: string;
-  email: string;
-  graduated: boolean;
-}> = (props) => {
-  return <li>{props.name}</li>;
+import StudentProps from "../models/StudentProps";
+
+const Student: React.FC<StudentProps> = (props) => {
+  const studentClickHandler = () => {};
+  return (
+    <li id={props.id} onClick={studentClickHandler}>
+      {props.name}
+    </li>
+  );
 };
 
 export default Student;
