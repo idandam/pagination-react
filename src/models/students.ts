@@ -8,6 +8,7 @@ let studentModels = [
     school: "UHIS",
     email: "Israel.Israeli1@gmail.com",
     graduated: true,
+    id: "045814121",
   },
   {
     name: "Israel Israeli2",
@@ -16,6 +17,7 @@ let studentModels = [
     school: "UHIS",
     email: "Israel.Israeli2@gmail.com",
     graduated: false,
+    id: "175594759",
   },
   {
     name: "Israel Israeli3",
@@ -24,6 +26,7 @@ let studentModels = [
     school: "UHIS",
     email: "Israel.Israeli3@gmail.com",
     graduated: false,
+    id: "209448065",
   },
   {
     name: "Israel Israeli4",
@@ -32,6 +35,7 @@ let studentModels = [
     school: "Tel-Hai",
     email: "Israel.Israeli4@gmail.com",
     graduated: false,
+    id: "357764915",
   },
   {
     name: "Israel Israeli5",
@@ -40,6 +44,7 @@ let studentModels = [
     school: "Tel-Hai",
     email: "Israel.Israeli5@gmail.com",
     graduated: true,
+    id: "433193835",
   },
   {
     name: "Israel Israeli6",
@@ -48,6 +53,7 @@ let studentModels = [
     school: "UHIS",
     email: "Israel.Israeli6@gmail.com",
     graduated: false,
+    id: "568579458",
   },
   {
     name: "Israel Israeli7",
@@ -56,6 +62,7 @@ let studentModels = [
     school: "HUJI",
     email: "Israel.Israeli7@gmail.com",
     graduated: false,
+    id: "699893682",
   },
   {
     name: "Israel Israeli8",
@@ -64,6 +71,7 @@ let studentModels = [
     school: "TOP",
     email: "Israel.Israeli8@gmail.com",
     graduated: false,
+    id: "746559089",
   },
   {
     name: "Israel Israeli9",
@@ -72,6 +80,7 @@ let studentModels = [
     school: "TOP",
     email: "Israel.Israeli9@gmail.com",
     graduated: true,
+    id: "847699657",
   },
   {
     name: "Israel Israeli10",
@@ -80,6 +89,7 @@ let studentModels = [
     school: "TOP",
     email: "Israel.Israeli10@gmail.com",
     graduated: false,
+    id: "912398577",
   },
   {
     name: "Israel Israeli11",
@@ -88,6 +98,7 @@ let studentModels = [
     school: "HUJI",
     email: "Israel.Israeli11@gmail.com",
     graduated: false,
+    id: "048958909",
   },
   {
     name: "Israel Israeli12",
@@ -96,6 +107,7 @@ let studentModels = [
     school: "HUJI",
     email: "Israel.Israeli12@gmail.com",
     graduated: false,
+    id: "156253516",
   },
   {
     name: "Israel Israeli13",
@@ -104,6 +116,7 @@ let studentModels = [
     school: "UHIS",
     email: "Israel.Israeli13@gmail.com",
     graduated: true,
+    id: "284831803",
   },
   {
     name: "Israel Israeli14",
@@ -112,6 +125,7 @@ let studentModels = [
     school: "HUJI",
     email: "Israel.Israeli14@gmail.com",
     graduated: false,
+    id: "336048896",
   },
   {
     name: "Israel Israeli15",
@@ -120,6 +134,7 @@ let studentModels = [
     school: "TOP",
     email: "Israel.Israeli15@gmail.com",
     graduated: false,
+    id: "491614717",
   },
   {
     name: "Israel Israeli16",
@@ -128,6 +143,7 @@ let studentModels = [
     school: "BGU",
     email: "Israel.Israeli16@gmail.com",
     graduated: false,
+    id: "521463556",
   },
   {
     name: "Israel Israeli17",
@@ -136,6 +152,7 @@ let studentModels = [
     school: "Tel-Hai",
     email: "Israel.Israeli17@gmail.com",
     graduated: true,
+    id: "693400882",
   },
   {
     name: "Israel Israeli18",
@@ -144,6 +161,7 @@ let studentModels = [
     school: "BGU",
     email: "Israel.Israeli18@gmail.com",
     graduated: false,
+    id: "794124674",
   },
   {
     name: "Israel Israeli19",
@@ -152,6 +170,7 @@ let studentModels = [
     school: "Tel-Hai",
     email: "Israel.Israeli19@gmail.com",
     graduated: false,
+    id: "865148875",
   },
   {
     name: "Israel Israeli20",
@@ -160,13 +179,15 @@ let studentModels = [
     school: "BGU",
     email: "Israel.Israeli20@gmail.com",
     graduated: false,
+    id: "910992977",
   },
 ];
-
 const students: StudentModel[] = [];
 studentModels.forEach((studentModel) => {
-  let { name, age, gender, school, email, graduated } = studentModel;
-  students.push(new StudentModel(name, age, gender, school, email, graduated));
+  let { name, age, gender, school, email, graduated, id } = studentModel;
+  students.push(
+    new StudentModel(name, age, gender, school, email, graduated, id)
+  );
 });
 
 export default students;

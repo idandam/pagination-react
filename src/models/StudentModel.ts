@@ -5,6 +5,7 @@ export default class Student {
   school: string;
   email: string;
   graduated: boolean;
+  id: string;
 
   constructor(
     name: string,
@@ -12,7 +13,8 @@ export default class Student {
     gender: string,
     school: string,
     email: string,
-    graduated: boolean
+    graduated: boolean,
+    id: string
   ) {
     this.name = name;
     this.age = age;
@@ -20,5 +22,6 @@ export default class Student {
     this.school = school;
     this.email = email;
     this.graduated = graduated;
+    this.id = id;
   }
 }
