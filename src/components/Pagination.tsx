@@ -19,15 +19,19 @@ const Pagination: React.FC<{
   const [currPage, setCurrPage] = useState(1);
   const pages = calcPages(props.students.length);
 
-  const nextPage = () => {
-    setCurrPage((page) => page + 1);
+  const nextPageHandler = (): void => {
+    if (currPage < pages) {
+      setCurrPage((page) => page + 1);
+    }
   };
 
-  const previousPage = () => {
-    setCurrPage((page) => page - 1);
+  const previousPageHandler = (): void => {
+    if (currPage > 1) {
+      setCurrPage((page) => page - 1);
+    }
   };
 
-  const pageChangeHandler = (event: any) => {
+  const pageChangeHandler = (event: any): void => {
     setCurrPage(Number(event.target.textContent));
   };
 
@@ -36,16 +40,24 @@ const Pagination: React.FC<{
     return props.students.slice(range.from, range.to);
   };
 
-  const getDisplayedPages = () => {
+  const getDisplayedPages = (): number[] => {
     // Display maximum 3 pages anchors
-    let maxPagesToDisplay = Math.min(
-      INITIAL_NUM_PAGES_TO_DISPLAY,
-      Math.floor(pages / 2) + 1
-    );
-    let startingPage =
-      Math.floor(currPage - 1 / maxPagesToDisplay) * maxPagesToDisplay;
+    let maxPagesToDisplay = Math.min(INITIAL_NUM_PAGES_TO_DISPLAY, pages);
+    // The common case
+    let startPageOffset =
+      Math.floor((currPage - 1) / maxPagesToDisplay) * maxPagesToDisplay;
+    // If reached to the end of the displayed panigation list
+    // and the number of hidden pages left is less then the total number of pages
+    // then start from an offset that will allow to display the required number of pages
+    // until the last page
+    if (
+      (currPage - 1) % maxPagesToDisplay === 0 &&
+      pages - currPage < maxPagesToDisplay
+    ) {
+      startPageOffset = pages - maxPagesToDisplay;
+    }
 
-    return getConsecutivePages(startingPage, maxPagesToDisplay);
+    return getConsecutivePages(startPageOffset, maxPagesToDisplay);
   };
   return (
     <div>
@@ -53,7 +65,12 @@ const Pagination: React.FC<{
       <main>
         <Students students={getModelsInRange()} />
       </main>
-      <PaginationList pagesToDisplay={getDisplayedPages()} />
+      <PaginationList
+        pagesToDisplay={getDisplayedPages()}
+        onPreviousPage={previousPageHandler}
+        onNextPage={nextPageHandler}
+        onPageChange={pageChangeHandler}
+      />
     </div>
   );
 };
