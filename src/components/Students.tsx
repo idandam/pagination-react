@@ -10,12 +10,35 @@ const Students: React.FC<{
   const [isSelectMode, setIsSelectMode] = useState(false);
   const [selected, setSelected] = useState<string[]>([]);
 
-  const longPressHandler = (studentId: string): void => {
-    if (!isSelectMode) {
-      setIsSelectMode(true);
-    }
-    if (!selected.find((id) => id === studentId)) {
-      setSelected((selected) => [...selected, studentId]);
+  console.log("select mode ? " + isSelectMode);
+  console.log("selected", selected);
+
+  const longPressHandler = (): void => {
+    setIsSelectMode(true);
+  };
+
+  const studentClickHandler = (
+    studentId: string,
+    studentWasSelected?: boolean
+  ): void => {
+    console.log("studentSS click");
+    if (isSelectMode) {
+      if (studentWasSelected !== undefined) {
+        setSelected((selected) => {
+          let updatedSelected = [...selected];
+          if (studentWasSelected && !selected.find((id) => id === studentId)) {
+            updatedSelected.push(studentId);
+          } else {
+            updatedSelected = updatedSelected.filter((id) => id !== studentId);
+            if (updatedSelected.length === 0) {
+              setIsSelectMode(false);
+            }
+          }
+          return updatedSelected;
+        });
+      }
+    } else {
+      props.onStudentClick(studentId);
     }
   };
 
@@ -26,8 +49,8 @@ const Students: React.FC<{
           key={student.id}
           student={student}
           isSelectMode={isSelectMode}
-          onClick={props.onStudentClick}
-          onLongPress = {longPressHandler}
+          onClick={studentClickHandler}
+          onLongPress={longPressHandler}
         />
       ))}
     </ul>

@@ -1,0 +1,13 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.control-btns {
+  display: flex;
+  gap: 0.8rem;
+}
+
+.btn-disabled {
+  background-color: #444;
+}
