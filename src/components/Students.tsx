@@ -1,28 +1,33 @@
 import Student from "./Student";
 import StudentModel from "../models/StudentModel";
 
+import { useState } from "react";
+
 const Students: React.FC<{
   students: StudentModel[];
   onStudentClick: (id: string) => void;
 }> = (props) => {
-  const listClickHandler = (event: any) => {
-    let listItem = event.target.closest("li");
-    if (listItem) {
-      props.onStudentClick(listItem.id);
+  const [isSelectMode, setIsSelectMode] = useState(false);
+  const [selected, setSelected] = useState<string[]>([]);
+
+  const longPressHandler = (studentId: string): void => {
+    if (!isSelectMode) {
+      setIsSelectMode(true);
+    }
+    if (!selected.find((id) => id === studentId)) {
+      setSelected((selected) => [...selected, studentId]);
     }
   };
+
   return (
-    <ul onClick={listClickHandler}>
+    <ul>
       {props.students.map((student) => (
         <Student
           key={student.id}
-          id={student.id}
-          name={student.name}
-          age={student.age}
-          gender={student.gender}
-          school={student.school}
-          email={student.email}
-          graduated={student.graduated}
+          student={student}
+          isSelectMode={isSelectMode}
+          onClick={props.onStudentClick}
+          onLongPress = {longPressHandler}
         />
       ))}
     </ul>

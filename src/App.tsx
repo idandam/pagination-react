@@ -9,7 +9,7 @@ import "./App.css";
 function App() {
   let navigate = useNavigate();
 
-  const studentClickHandler = (id: string) => {
+  const studentClickHandler = (id: string): void => {
     navigate(`/students/${id}`);
   };
 
