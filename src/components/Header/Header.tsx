@@ -1,11 +1,18 @@
-import { useLocation } from "react-router-dom";
+import { useState } from "react";
+import { useLocation, useParams } from "react-router-dom";
 import styles from "./Header.module.css";
 
 const Header: React.FC<{
-  isInEditMode: boolean;
   canEdit: boolean;
+  isInEditMode: boolean;
   canDelete: boolean;
+  onEditClick: () => void;
+  onDeleteClick: () => void;
 }> = (props) => {
+  const editClickandler = () => {
+    props.onEditClick();
+  };
+
   return (
     <header className={styles.header}>
       <p>Students</p>
@@ -19,7 +26,11 @@ const Header: React.FC<{
               Delete
             </button>
           )}
-          {<button>{props.isInEditMode ? "Done" : "Edit"}</button>}
+          {
+            <button onClick={editClickandler}>
+              {props.isInEditMode ? "Done" : "Edit"}
+            </button>
+          }
         </div>
       )}
     </header>

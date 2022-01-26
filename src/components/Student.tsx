@@ -1,48 +1,32 @@
 import StudentModel from "../models/StudentModel";
-import { useLongPress } from "react-use";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Student: React.FC<{
   student: StudentModel;
-  isSelectMode: boolean;
+  isInEditMode: boolean;
   onClick: (studentId: string, studentWasSelected?: boolean) => void;
-  onLongPress: () => void;
 }> = (props) => {
   const [isSelected, setIsSelected] = useState(false);
+  const { isInEditMode } = props;
 
-  let longPressHandler = (event: any): void => {
-    if (!props.isSelectMode) {
-      props.onLongPress();
+  useEffect(() => {
+    if (!isInEditMode) {
+      setIsSelected(false);
     }
-  };
-
-  const defaultOptions = {
-    isPreventDefault: true,
-    delay: 300,
-  };
-
-  const longPressEvent = useLongPress(longPressHandler, defaultOptions);
-
+  }, [isInEditMode]);
   const studentClickHandler = (): void => {
-    props.onClick(props.student.id);
-  };
-
-  const selectStudentHandler = (event:any):void => {
-    if (props.isSelectMode) {
-      setIsSelected(event.target.checked);
-      props.onClick(props.student.id, event.target.checked);
-      
+    if (!props.isInEditMode) {
+      props.onClick(props.student.id);
+    } else {
+      setIsSelected((isSelected) => !isSelected);
+      props.onClick(props.student.id, !isSelected);
     }
   };
 
   return (
-    <li
-      id={props.student.id}
-      onClick={studentClickHandler}
-      {...(!props.isSelectMode ? longPressEvent : {})}
-    >
+    <li id={props.student.id} onClick={studentClickHandler}>
       {props.student.name}
-      {props.isSelectMode && <input onChange={selectStudentHandler} type="checkbox" />}
+      {props.isInEditMode && <input checked={isSelected} type="checkbox" />}
     </li>
   );
 };

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import Pagination from "./components/Pagination";
 import students from "./models/students";
@@ -6,26 +6,25 @@ import { MAX_STUDENTS_PER_PAGE } from "./constants/constants";
 import StudentDetails from "./components/StudentDetails";
 import "./App.css";
 import Header from "./components/Header/Header";
+import canEdit from "./Utils/canEdit";
 
 function App() {
   const [isInEditMode, setIsInEditMode] = useState(false);
   const [canDelete, setCanDelete] = useState(false);
 
   const location = useLocation();
-  console.log(location);
   const navigate = useNavigate();
 
-  const enterEditModeHandler = () => {
-    setIsInEditMode(true);
+  const editModeHandler = (): void => {
+    setIsInEditMode((isInEditMode) => !isInEditMode);
   };
-  const leaveEditModeHandler = () => {
-    setIsInEditMode(false);
-  };
-  const allowDeleteHandler = () => {
-    setCanDelete(true);
-  };
-  const disableDeleteHandler = () => {
-    setCanDelete(false);
+
+  const allowDeleteandler = useCallback((canDelete: boolean): void => {
+    setCanDelete(canDelete);
+  }, []);
+
+  const deleteStudentsHandler = () => {
+    console.log("in delete student handler in App");
   };
 
   const studentClickHandler = (id: string): void => {
@@ -35,9 +34,11 @@ function App() {
   return (
     <div className="App">
       <Header
+        canEdit={canEdit(location.pathname)}
         isInEditMode={isInEditMode}
-        canEdit={location.pathname === "/students/"}
         canDelete={canDelete}
+        onEditClick={editModeHandler}
+        onDeleteClick={deleteStudentsHandler}
       />
       <Routes>
         <Route
@@ -47,7 +48,9 @@ function App() {
               students={students}
               title="Our Students"
               maxStudentsPerPage={MAX_STUDENTS_PER_PAGE}
+              isInEditMode={isInEditMode}
               onStudentClick={studentClickHandler}
+              onSelectStudent={allowDeleteandler}
             />
           }
         />
