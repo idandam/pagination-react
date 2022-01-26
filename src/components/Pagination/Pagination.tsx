@@ -3,14 +3,14 @@ import { useState } from "react";
 import {
   INITIAL_NUM_OF_STUDENTS,
   INITIAL_NUM_PAGES_TO_DISPLAY,
-} from "../constants/constants";
-import calcPages from "../Utils/calcPages";
-import getConsecutivePages from "../Utils/getConsecutivePages";
-import getIndexRange from "../Utils/getIndexRange";
-import Students from "./Students";
-import StudentModel from "../models/StudentModel";
+} from "../../constants/constants";
+import calcPages from "../../Utils/calcPages";
+import getConsecutivePages from "../../Utils/getConsecutivePages";
+import getIndexRange from "../../Utils/getIndexRange";
+import Students from "../Students/Students";
+import StudentModel from "../../models/StudentModel";
 import PaginationList from "./PaginationList";
-import getStartPageOffset from "../Utils/getStartPageOffset";
+import getStartPageOffset from "../../Utils/getStartPageOffset";
 
 const Pagination: React.FC<{
   students: StudentModel[];

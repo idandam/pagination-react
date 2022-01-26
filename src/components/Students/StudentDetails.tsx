@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import StudentModel from "../models/StudentModel";
+import StudentModel from "../../models/StudentModel";
 
 const StudentDetails: React.FC<{ students: StudentModel[] }> = (props) => {
   let { studentId } = useParams();

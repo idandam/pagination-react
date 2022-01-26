@@ -1,4 +1,4 @@
-import StudentModel from "../models/StudentModel";
+import StudentModel from "../../models/StudentModel";
 import { useEffect, useState } from "react";
 
 const Student: React.FC<{

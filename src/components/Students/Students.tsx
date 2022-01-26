@@ -1,5 +1,5 @@
 import Student from "./Student";
-import StudentModel from "../models/StudentModel";
+import StudentModel from "../../models/StudentModel";
 
 
 const Students: React.FC<{

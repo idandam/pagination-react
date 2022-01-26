@@ -6,11 +6,11 @@ import {
   useLocation,
   Navigate,
 } from "react-router-dom";
-import Pagination from "./components/Pagination";
+import Pagination from "./components/Pagination/Pagination";
 import StudentModel from "./models/StudentModel";
 import studentsMock from "./models/students";
 import { MAX_STUDENTS_PER_PAGE } from "./constants/constants";
-import StudentDetails from "./components/StudentDetails";
+import StudentDetails from "./components/Students/StudentDetails";
 import "./App.css";
 import Header from "./components/Header/Header";
 import canEdit from "./Utils/canEdit";
