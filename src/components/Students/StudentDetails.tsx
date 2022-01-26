@@ -1,5 +1,7 @@
 import { useParams } from "react-router-dom";
 import StudentModel from "../../models/StudentModel";
+import Checkbox from "../UI/Forms/Checkbox";
+import TypedInput from "../UI/Forms/TypedInput";
 
 const StudentDetails: React.FC<{ students: StudentModel[] }> = (props) => {
   let { studentId } = useParams();
@@ -9,18 +11,22 @@ const StudentDetails: React.FC<{ students: StudentModel[] }> = (props) => {
     <>
       {student && (
         <form>
-          <label htmlFor="name">Name</label>
-          <input name="name" value={student.name} />
-          <label htmlFor="age">Age</label>
-          <input name="age" value={student.age} />
-          <label htmlFor="gender">Gender</label>
-          <input name="gender" value={student.gender} readOnly />
-          <label htmlFor="school">School</label>
-          <input name="school" value={student.school} />
-          <label htmlFor="email">Email</label>
-          <input name="email" type="email" value={student.email} />
-          <label htmlFor="graduated">Graduated</label>
-          <input name="graduated" type="checkbox" checked={student.graduated} />
+          <TypedInput id="name" text="Name" value={student.name} />
+          <TypedInput id="age" text="Age" value={student.age.toString()} />
+          <TypedInput id="school" text="School" value={student.school} />
+          <TypedInput
+            id="email"
+            text="Email"
+            value={student.email}
+            type="email"
+          />
+          <Checkbox
+            id="graduated"
+            text="Graduated"
+            type="checkbox"
+            checked={student.graduated}
+          />
+          <button>Submit</button>
         </form>
       )}
     </>
