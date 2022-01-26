@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
+
 import styles from "./Header.module.css";
 
 const Header: React.FC<{
@@ -20,6 +19,7 @@ const Header: React.FC<{
         <div className={styles["control-btns"]}>
           {props.isInEditMode && (
             <button
+              onClick={props.onDeleteClick}
               disabled={!props.canDelete}
               className={!props.canDelete ? styles["btn-disabled"] : ""}
             >

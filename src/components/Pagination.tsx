@@ -17,7 +17,6 @@ const Pagination: React.FC<{
   title: string;
   maxStudentsPerPage: number;
   isInEditMode: boolean;
-  onSelectStudent: (canDelete: boolean) => void;
   onStudentClick: (id: string) => void;
 }> = (props) => {
   const [currPage, setCurrPage] = useState(1);
@@ -63,7 +62,6 @@ const Pagination: React.FC<{
           students={getModelsInRange()}
           onStudentClick={props.onStudentClick}
           isInEditMode={props.isInEditMode}
-          onSelectStudent={props.onSelectStudent}
         />
       </main>
       <PaginationList

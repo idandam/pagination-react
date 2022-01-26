@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import { useState } from "react";
 import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import Pagination from "./components/Pagination";
 import students from "./models/students";
@@ -10,25 +10,55 @@ import canEdit from "./Utils/canEdit";
 
 function App() {
   const [isInEditMode, setIsInEditMode] = useState(false);
-  const [canDelete, setCanDelete] = useState(false);
+  const [selected, setSelected] = useState<string[]>([]);
 
   const location = useLocation();
   const navigate = useNavigate();
 
+  let ourStudents = [...students];
+
+  const studentSelectHandler = (
+    studentId: string,
+    studentWasSelected?: boolean
+  ) => {
+    setSelected((selected) => {
+      let updatedSelected = [...selected];
+
+      if (studentWasSelected && !selected.find((id) => id === studentId)) {
+        updatedSelected.push(studentId);
+      } else {
+        updatedSelected = updatedSelected.filter((id) => id !== studentId);
+      }
+      return updatedSelected;
+    });
+  };
+
+  const studentClickHandler = (
+    studentId: string,
+    studentWasSelected?: boolean
+  ): void => {
+    if (isInEditMode) {
+      studentSelectHandler(studentId, studentWasSelected);
+    } else {
+      navigate(`/students/${studentId}`);
+    }
+  };
+
   const editModeHandler = (): void => {
-    setIsInEditMode((isInEditMode) => !isInEditMode);
+    setIsInEditMode((isInEditMode) => {
+      // If this is true then in the next render cycle it will be false
+      // which means that we our not in edit mode
+      if (isInEditMode) {
+        setSelected([]);
+      }
+      return !isInEditMode;
+    });
   };
 
-  const allowDeleteandler = useCallback((canDelete: boolean): void => {
-    setCanDelete(canDelete);
-  }, []);
-
-  const deleteStudentsHandler = () => {
-    console.log("in delete student handler in App");
-  };
-
-  const studentClickHandler = (id: string): void => {
-    navigate(`/students/${id}`);
+  const deleteStudentsHandler = (): void => {
+    selected.forEach((studentId) => {
+      ourStudents = ourStudents.filter((student) => student.id !== studentId);
+    });
   };
 
   return (
@@ -36,7 +66,7 @@ function App() {
       <Header
         canEdit={canEdit(location.pathname)}
         isInEditMode={isInEditMode}
-        canDelete={canDelete}
+        canDelete={selected.length > 0}
         onEditClick={editModeHandler}
         onDeleteClick={deleteStudentsHandler}
       />
@@ -45,18 +75,17 @@ function App() {
           path="students"
           element={
             <Pagination
-              students={students}
+              students={ourStudents}
               title="Our Students"
               maxStudentsPerPage={MAX_STUDENTS_PER_PAGE}
               isInEditMode={isInEditMode}
               onStudentClick={studentClickHandler}
-              onSelectStudent={allowDeleteandler}
             />
           }
         />
         <Route
           path="students/:studentId"
-          element={<StudentDetails students={students} />}
+          element={<StudentDetails students={ourStudents} />}
         />
       </Routes>
     </div>
