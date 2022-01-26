@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import Pagination from "./components/Pagination";
-import students from "./models/students";
+import StudentModel from "./models/StudentModel";
+import studentsMock from "./models/students";
 import { MAX_STUDENTS_PER_PAGE } from "./constants/constants";
 import StudentDetails from "./components/StudentDetails";
 import "./App.css";
@@ -10,12 +11,11 @@ import canEdit from "./Utils/canEdit";
 
 function App() {
   const [isInEditMode, setIsInEditMode] = useState(false);
+  const [students, setStudents] = useState<StudentModel[]>(studentsMock);
   const [selected, setSelected] = useState<string[]>([]);
 
   const location = useLocation();
   const navigate = useNavigate();
-
-  let ourStudents = [...students];
 
   const studentSelectHandler = (
     studentId: string,
@@ -56,8 +56,15 @@ function App() {
   };
 
   const deleteStudentsHandler = (): void => {
-    selected.forEach((studentId) => {
-      ourStudents = ourStudents.filter((student) => student.id !== studentId);
+    setStudents((students) => {
+      let updatedStudents = [...students];
+      selected.forEach((studentId) => {
+        updatedStudents = updatedStudents.filter(
+          (student) => student.id !== studentId
+        );
+      });
+      setSelected([]);
+      return updatedStudents;
     });
   };
 
@@ -75,7 +82,7 @@ function App() {
           path="students"
           element={
             <Pagination
-              students={ourStudents}
+              students={students}
               title="Our Students"
               maxStudentsPerPage={MAX_STUDENTS_PER_PAGE}
               isInEditMode={isInEditMode}
@@ -85,7 +92,7 @@ function App() {
         />
         <Route
           path="students/:studentId"
-          element={<StudentDetails students={ourStudents} />}
+          element={<StudentDetails students={students} />}
         />
       </Routes>
     </div>
