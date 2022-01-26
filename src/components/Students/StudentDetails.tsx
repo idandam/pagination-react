@@ -7,10 +7,12 @@ const StudentDetails: React.FC<{ students: StudentModel[] }> = (props) => {
   let { studentId } = useParams();
   let student = props.students.find((student) => student.id === studentId);
 
+  const isFormValid = () => {};
+
   return (
     <>
       {student && (
-        <form>
+        <form onSubmit={isFormValid}>
           <TypedInput id="name" text="Name" value={student.name} />
           <TypedInput id="age" text="Age" value={student.age.toString()} />
           <TypedInput id="school" text="School" value={student.school} />

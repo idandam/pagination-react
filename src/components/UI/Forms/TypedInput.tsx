@@ -3,13 +3,12 @@ const TypedInput: React.FC<{
   text: string;
   value: string;
   type?: string;
+  // onChange: (event: any) => void;
 }> = (props) => {
-  let { type } = props;
-
   return (
     <div>
       <label htmlFor={props.id}>{props.text}</label>
-      <input id={props.id} value={props.value} {...type} required />
+      <input {...props} required />
     </div>
   );
 };
