@@ -10,7 +10,9 @@ const useInput = (
   const isValid = validate(value);
   const hasError = !isValid && isTouched;
 
-  const valueChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const valueChangeHandler = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ): void => {
     setValue(event.target.value);
   };
 
@@ -18,7 +20,18 @@ const useInput = (
     setIsTouched(true);
   };
 
-  return { value, isValid, hasError, valueChangeHandler, inputBlurHandler };
+  const reset = () => {
+    setIsTouched(false);
+  };
+
+  return {
+    value,
+    isValid,
+    hasError,
+    valueChangeHandler,
+    inputBlurHandler,
+    reset,
+  };
 };
 
 export default useInput;
