@@ -5,12 +5,13 @@ import {
   useNavigate,
   useLocation,
   Navigate,
+  useParams,
 } from "react-router-dom";
 import Pagination from "./components/Pagination/Pagination";
 import StudentModel from "./models/StudentModel";
 import studentsMock from "./models/students";
 import { MAX_STUDENTS_PER_PAGE } from "./constants/constants";
-import StudentDetails from "./components/Students/StudentDetails";
+import StudentDetailsWrapper from "./components/Students/StudentDetailsWrapper";
 import "./App.css";
 import Header from "./components/Header/Header";
 import canEdit from "./Utils/canEdit";
@@ -99,7 +100,7 @@ function App() {
         />
         <Route
           path="students/:studentId"
-          element={<StudentDetails students={students} />}
+          element={<StudentDetailsWrapper students={students} />}
         />
         <Route
           path="*"
