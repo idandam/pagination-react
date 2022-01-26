@@ -1,5 +1,11 @@
 import { useState } from "react";
-import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
+import {
+  Routes,
+  Route,
+  useNavigate,
+  useLocation,
+  Navigate,
+} from "react-router-dom";
 import Pagination from "./components/Pagination";
 import StudentModel from "./models/StudentModel";
 import studentsMock from "./models/students";
@@ -78,6 +84,7 @@ function App() {
         onDeleteClick={deleteStudentsHandler}
       />
       <Routes>
+        <Route path="/" element={<Navigate to="/students" />} />
         <Route
           path="students"
           element={
@@ -93,6 +100,10 @@ function App() {
         <Route
           path="students/:studentId"
           element={<StudentDetails students={students} />}
+        />
+        <Route
+          path="*"
+          element={<p>The page you are looking for does not exist</p>}
         />
       </Routes>
     </div>
