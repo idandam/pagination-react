@@ -1,4 +1,4 @@
-
+import "../../general-css/general.css";
 import styles from "./Header.module.css";
 
 const Header: React.FC<{
@@ -14,20 +14,20 @@ const Header: React.FC<{
 
   return (
     <header className={styles.header}>
-      <p>Students</p>
+      <p className={styles.title}>Students</p>
       {props.canEdit && (
         <div className={styles["control-btns"]}>
           {props.isInEditMode && (
             <button
               onClick={props.onDeleteClick}
               disabled={!props.canDelete}
-              className={!props.canDelete ? styles["btn-disabled"] : ""}
+              className={`btn ${styles.btn}`}
             >
               Delete
             </button>
           )}
           {
-            <button onClick={editClickandler}>
+            <button className={`btn ${styles.btn}`} onClick={editClickandler}>
               {props.isInEditMode ? "Done" : "Edit"}
             </button>
           }

@@ -25,8 +25,8 @@ const Student: React.FC<{
 
   return (
     <li id={props.student.id} onClick={studentClickHandler}>
-      {props.student.name}
       {props.isInEditMode && <input checked={isSelected} type="checkbox" />}
+      {props.student.name}
     </li>
   );
 };

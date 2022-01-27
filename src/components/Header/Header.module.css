@@ -1,13 +1,30 @@
 .header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 2.4rem;
+  color: var(--color-header);
+  background-image: linear-gradient(
+    to right,
+    var(--color-primary-dark),
+    var(--color-primary-light)
+  );
 }
 
+.title {
+  font-size: 3.2rem;
+}
 .control-btns {
   display: flex;
-  gap: 0.8rem;
+  gap: 1.2rem;
 }
 
-.btn-disabled {
-  background-color: #444;
+.btn {
+  background-color: var(--color-header-btn);
+  color: inherit;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: default !important;
 }
