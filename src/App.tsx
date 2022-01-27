@@ -25,7 +25,7 @@ function App() {
 
   useEffect(() => {
     const students = localStorage.getItem("students");
-    if (students) {
+    if (students && students !== "[]") {
       setStudents(JSON.parse(students));
     } else {
       fetch("https://run.mocky.io/v3/00c7dbe8-7e51-41af-bf1c-05a4a60fa47c")
@@ -38,9 +38,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (students.length > 0) {
-      localStorage.setItem("students", JSON.stringify(students));
-    }
+    localStorage.setItem("students", JSON.stringify(students));
   }, [students]);
 
   const studentSelectHandler = (
@@ -122,13 +120,17 @@ function App() {
         <Route
           path="students"
           element={
-            <Pagination
-              students={students}
-              title="Our Students"
-              maxStudentsPerPage={MAX_STUDENTS_PER_PAGE}
-              isInEditMode={isInEditMode}
-              onStudentClick={studentClickHandler}
-            />
+            students.length > 0 ? (
+              <Pagination
+                students={students}
+                title="Our Students"
+                maxStudentsPerPage={MAX_STUDENTS_PER_PAGE}
+                isInEditMode={isInEditMode}
+                onStudentClick={studentClickHandler}
+              />
+            ) : (
+              <p>No students</p>
+            )
           }
         />
         <Route

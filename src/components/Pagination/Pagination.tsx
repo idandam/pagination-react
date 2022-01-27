@@ -1,9 +1,6 @@
-import React, { SyntheticEvent } from "react";
+import React from "react";
 import { useState } from "react";
-import {
-  INITIAL_NUM_OF_STUDENTS,
-  INITIAL_NUM_PAGES_TO_DISPLAY,
-} from "../../constants/constants";
+import { INITIAL_NUM_PAGES_TO_DISPLAY } from "../../constants/constants";
 import calcPages from "../../Utils/calcPages";
 import getConsecutivePages from "../../Utils/getConsecutivePages";
 import getIndexRange from "../../Utils/getIndexRange";
