@@ -1,15 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Routes,
   Route,
   useNavigate,
   useLocation,
   Navigate,
-  useParams,
 } from "react-router-dom";
 import Pagination from "./components/Pagination/Pagination";
 import StudentModel from "./models/StudentModel";
-import studentsMock from "./models/students";
+// import studentsMock from "./models/students";
 import { MAX_STUDENTS_PER_PAGE } from "./constants/constants";
 import StudentDetailsWrapper from "./components/Students/StudentDetailsWrapper";
 import "./App.css";
@@ -18,11 +17,31 @@ import canEdit from "./Utils/canEdit";
 
 function App() {
   const [isInEditMode, setIsInEditMode] = useState(false);
-  const [students, setStudents] = useState<StudentModel[]>(studentsMock);
+  const [students, setStudents] = useState<StudentModel[]>([]);
   const [selected, setSelected] = useState<string[]>([]);
 
   const location = useLocation();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const students = localStorage.getItem("students");
+    if (students) {
+      setStudents(JSON.parse(students));
+    } else {
+      fetch("https://run.mocky.io/v3/00c7dbe8-7e51-41af-bf1c-05a4a60fa47c")
+        .then((response) => response.json())
+        .then((result) => {
+          setStudents(result.data);
+        })
+        .catch((err) => console.log(err));
+    }
+  }, []);
+
+  useEffect(() => {
+    if (students.length > 0) {
+      localStorage.setItem("students", JSON.stringify(students));
+    }
+  }, [students]);
 
   const studentSelectHandler = (
     studentId: string,
@@ -114,7 +133,12 @@ function App() {
         />
         <Route
           path="students/:studentId"
-          element={<StudentDetailsWrapper students={students} onUpdateStudent={studentUpdatedHandler} />}
+          element={
+            <StudentDetailsWrapper
+              students={students}
+              onUpdateStudent={studentUpdatedHandler}
+            />
+          }
         />
         <Route
           path="*"
