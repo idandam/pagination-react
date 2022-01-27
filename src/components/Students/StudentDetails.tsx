@@ -4,7 +4,10 @@ import useInput from "../hooks/use-input";
 import Checkbox from "../UI/Forms/Checkbox";
 import TypedInput from "../UI/Forms/TypedInput";
 
-const StudentDetails: React.FC<{ student: StudentModel }> = (props) => {
+const StudentDetails: React.FC<{
+  student: StudentModel;
+  onUpdateStudent: (updatedStudent: StudentModel) => void;
+}> = (props) => {
   const { student } = props;
   const [graduated, setGraduated] = useState(student.graduated);
 
@@ -69,8 +72,14 @@ const StudentDetails: React.FC<{ student: StudentModel }> = (props) => {
     resetName();
     resetSchool();
 
-    //TODO - save updated student details
-    console.log(name, age, email, school, graduated);
+    props.onUpdateStudent({
+      name,
+      age: Number(age),
+      school,
+      email,
+      graduated,
+      id: student.id,
+    });
   };
 
   return (

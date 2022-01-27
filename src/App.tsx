@@ -75,6 +75,20 @@ function App() {
     });
   };
 
+  const studentUpdatedHandler = (updatedStudent: StudentModel): void => {
+    setStudents((students) => {
+      const i = students.findIndex(
+        (student) => student.id === updatedStudent.id
+      );
+      if (i > -1) {
+        const updatedStudents = [...students];
+        updatedStudents[i] = updatedStudent;
+        return updatedStudents;
+      }
+      return students;
+    });
+  };
+
   return (
     <div className="App">
       <Header
@@ -100,7 +114,7 @@ function App() {
         />
         <Route
           path="students/:studentId"
-          element={<StudentDetailsWrapper students={students} />}
+          element={<StudentDetailsWrapper students={students} onUpdateStudent={studentUpdatedHandler} />}
         />
         <Route
           path="*"

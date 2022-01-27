@@ -4,7 +4,6 @@ let studentModels = [
   {
     name: "Israel Israeli1",
     age: 18,
-    gender: "M",
     school: "UHIS",
     email: "Israel.Israeli1@gmail.com",
     graduated: true,
@@ -13,7 +12,6 @@ let studentModels = [
   {
     name: "Israel Israeli2",
     age: 19,
-    gender: "F",
     school: "UHIS",
     email: "Israel.Israeli2@gmail.com",
     graduated: false,
@@ -22,7 +20,6 @@ let studentModels = [
   {
     name: "Israel Israeli3",
     age: 20,
-    gender: "M",
     school: "UHIS",
     email: "Israel.Israeli3@gmail.com",
     graduated: false,
@@ -31,7 +28,6 @@ let studentModels = [
   {
     name: "Israel Israeli4",
     age: 21,
-    gender: "F",
     school: "Tel-Hai",
     email: "Israel.Israeli4@gmail.com",
     graduated: false,
@@ -40,7 +36,6 @@ let studentModels = [
   {
     name: "Israel Israeli5",
     age: 22,
-    gender: "M",
     school: "Tel-Hai",
     email: "Israel.Israeli5@gmail.com",
     graduated: true,
@@ -49,7 +44,6 @@ let studentModels = [
   {
     name: "Israel Israeli6",
     age: 23,
-    gender: "F",
     school: "UHIS",
     email: "Israel.Israeli6@gmail.com",
     graduated: false,
@@ -58,7 +52,6 @@ let studentModels = [
   {
     name: "Israel Israeli7",
     age: 24,
-    gender: "M",
     school: "HUJI",
     email: "Israel.Israeli7@gmail.com",
     graduated: false,
@@ -67,7 +60,6 @@ let studentModels = [
   {
     name: "Israel Israeli8",
     age: 25,
-    gender: "F",
     school: "TOP",
     email: "Israel.Israeli8@gmail.com",
     graduated: false,
@@ -76,7 +68,6 @@ let studentModels = [
   {
     name: "Israel Israeli9",
     age: 26,
-    gender: "M",
     school: "TOP",
     email: "Israel.Israeli9@gmail.com",
     graduated: true,
@@ -85,7 +76,6 @@ let studentModels = [
   {
     name: "Israel Israeli10",
     age: 27,
-    gender: "F",
     school: "TOP",
     email: "Israel.Israeli10@gmail.com",
     graduated: false,
@@ -94,7 +84,6 @@ let studentModels = [
   {
     name: "Israel Israeli11",
     age: 28,
-    gender: "M",
     school: "HUJI",
     email: "Israel.Israeli11@gmail.com",
     graduated: false,
@@ -103,7 +92,6 @@ let studentModels = [
   {
     name: "Israel Israeli12",
     age: 29,
-    gender: "F",
     school: "HUJI",
     email: "Israel.Israeli12@gmail.com",
     graduated: false,
@@ -112,7 +100,6 @@ let studentModels = [
   {
     name: "Israel Israeli13",
     age: 30,
-    gender: "M",
     school: "UHIS",
     email: "Israel.Israeli13@gmail.com",
     graduated: true,
@@ -121,7 +108,6 @@ let studentModels = [
   {
     name: "Israel Israeli14",
     age: 31,
-    gender: "F",
     school: "HUJI",
     email: "Israel.Israeli14@gmail.com",
     graduated: false,
@@ -139,7 +125,6 @@ let studentModels = [
   {
     name: "Israel Israeli16",
     age: 33,
-    gender: "F",
     school: "BGU",
     email: "Israel.Israeli16@gmail.com",
     graduated: false,
@@ -148,7 +133,6 @@ let studentModels = [
   {
     name: "Israel Israeli17",
     age: 34,
-    gender: "M",
     school: "Tel-Hai",
     email: "Israel.Israeli17@gmail.com",
     graduated: true,
@@ -157,7 +141,6 @@ let studentModels = [
   {
     name: "Israel Israeli18",
     age: 35,
-    gender: "F",
     school: "BGU",
     email: "Israel.Israeli18@gmail.com",
     graduated: false,
@@ -166,7 +149,6 @@ let studentModels = [
   {
     name: "Israel Israeli19",
     age: 36,
-    gender: "M",
     school: "Tel-Hai",
     email: "Israel.Israeli19@gmail.com",
     graduated: false,
@@ -175,7 +157,6 @@ let studentModels = [
   {
     name: "Israel Israeli20",
     age: 37,
-    gender: "F",
     school: "BGU",
     email: "Israel.Israeli20@gmail.com",
     graduated: false,
@@ -184,10 +165,8 @@ let studentModels = [
 ];
 const students: StudentModel[] = [];
 studentModels.forEach((studentModel) => {
-  let { name, age, gender, school, email, graduated, id } = studentModel;
-  students.push(
-    new StudentModel(name, age, gender, school, email, graduated, id)
-  );
+  let { name, age, school, email, graduated, id } = studentModel;
+  students.push({name, age, school, email, graduated, id});
 });
 
 export default students;
