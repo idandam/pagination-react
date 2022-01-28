@@ -1,5 +1,6 @@
 import Student from "./Student";
 import StudentModel from "../../models/StudentModel";
+import styles from "./Students.module.css";
 import person1 from "../../img/0.jpg";
 import person2 from "../../img/1.jpg";
 import person3 from "../../img/2.jpg";
@@ -15,7 +16,7 @@ const Students: React.FC<{
   isInEditMode: boolean;
 }> = (props) => {
   return (
-    <ul>
+    <ul className={styles.list}>
       {props.students.map((student, index) => (
         <Student
           key={student.id}

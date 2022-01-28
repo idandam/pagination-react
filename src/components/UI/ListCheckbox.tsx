@@ -4,7 +4,7 @@ const ListCheckbox: React.FC<{ checked: boolean }> = (props) => {
   return (
     <div className={styles.container}>
       <input type="checkbox" checked={props.checked} />
-      <span className={styles.checkmark}></span>
+      <span className={`${styles.checkmark} ${styles.animate}`}></span>
     </div>
   );
 };

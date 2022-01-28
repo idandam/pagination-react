@@ -1,17 +1,25 @@
 .grid__3-col {
   display: grid;
-  position: relative;
   grid-template-columns: min-content min-content max-content;
   align-items: center;
   justify-items: center;
   gap: 1.6rem;
+  padding: 0.8rem 0.4rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.2s linear;
+}
+
+.grid__3-col:hover:not(.selected) {
+  background-color: #d9ebeb;
+}
+
+.selected {
+  background-color: #b2d7d7;
 }
 
 .img {
   height: 4.8rem;
   border-radius: 50%;
   grid-column: 2/3;
-}
-input {
-  border-radius: 50%;
 }

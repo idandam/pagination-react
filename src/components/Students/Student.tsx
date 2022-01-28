@@ -31,7 +31,9 @@ const Student: React.FC<{
     <li
       id={props.student.id}
       onClick={studentClickHandler}
-      className={`list-item ${styles["grid__3-col"]}`}
+      className={`list-item ${styles["grid__3-col"]} ${
+        isSelected ? styles.selected : ""
+      }`}
     >
       {props.isInEditMode && <ListCheckbox checked={isSelected} />}
       <img src={props.img} alt="A person" className={styles.img} />
