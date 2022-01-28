@@ -1,3 +1,15 @@
+.container {
+  max-width: 80rem;
+  padding: 0 3.2rem;
+  margin: 0 auto;
+}
+
+
+
+.list-item {
+  list-style-type: none;
+}
+
 .btn {
   display: inline-block;
 

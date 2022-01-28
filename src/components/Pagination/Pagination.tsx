@@ -8,6 +8,7 @@ import Students from "../Students/Students";
 import StudentModel from "../../models/StudentModel";
 import PaginationList from "./PaginationList";
 import getStartPageOffset from "../../Utils/getStartPageOffset";
+import "../../general-css/general.css";
 
 const Pagination: React.FC<{
   students: StudentModel[];
@@ -52,7 +53,7 @@ const Pagination: React.FC<{
     return getConsecutivePages(startPageOffset, maxPagesToDisplay);
   };
   return (
-    <div>
+    <div className="container grid">
       <h1>{props.title}</h1>
       <main>
         <Students
