@@ -53,15 +53,13 @@ const Pagination: React.FC<{
     return getConsecutivePages(startPageOffset, maxPagesToDisplay);
   };
   return (
-    <div className="container grid">
+    <main className="container grid__1-col">
       <h1>{props.title}</h1>
-      <main>
-        <Students
-          students={getModelsInRange()}
-          onStudentClick={props.onStudentClick}
-          isInEditMode={props.isInEditMode}
-        />
-      </main>
+      <Students
+        students={getModelsInRange()}
+        onStudentClick={props.onStudentClick}
+        isInEditMode={props.isInEditMode}
+      />
       <PaginationList
         pagesToDisplay={getDisplayedPages()}
         onPreviousPage={previousPageHandler}
@@ -69,7 +67,7 @@ const Pagination: React.FC<{
         onPageChange={pageChangeHandler}
         inEditMode={props.isInEditMode}
       />
-    </div>
+    </main>
   );
 };
 

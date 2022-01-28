@@ -4,8 +4,9 @@
   align-items: center;
   justify-items: center;
   gap: 1.6rem;
-  padding: 0.8rem 0.4rem;
+  padding: 0.8rem 3rem 0.8rem 0.8rem;
   border-radius: 5px;
+  width: 100%;
   cursor: pointer;
   transition: all 0.2s linear;
 }
