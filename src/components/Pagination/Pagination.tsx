@@ -9,6 +9,7 @@ import StudentModel from "../../models/StudentModel";
 import PaginationList from "./PaginationList";
 import getStartPageOffset from "../../Utils/getStartPageOffset";
 import "../../general-css/general.css";
+import styles from "./Pagination.module.css";
 
 const Pagination: React.FC<{
   students: StudentModel[];
@@ -54,7 +55,7 @@ const Pagination: React.FC<{
   };
   return (
     <main className="container grid__1-col">
-      <h1>{props.title}</h1>
+      <h1 className={styles.title}>{props.title}</h1>
       <Students
         students={getModelsInRange()}
         onStudentClick={props.onStudentClick}

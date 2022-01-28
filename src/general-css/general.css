@@ -1,11 +1,13 @@
 .container {
-  max-width: 60rem;
   padding: 0 3.2rem;
   margin: 0 auto;
+  flex-grow: 1;
+  overflow: auto;
 }
 
 .grid__1-col {
   display: grid;
+  width: 100%;
   grid-template-columns: 1fr;
   justify-items: center;
   gap: 3.2rem;

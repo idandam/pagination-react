@@ -14,6 +14,7 @@ import StudentDetailsWrapper from "./components/Students/StudentDetailsWrapper";
 import "./App.css";
 import Header from "./components/Header/Header";
 import canEdit from "./Utils/canEdit";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   const [isInEditMode, setIsInEditMode] = useState(false);
@@ -107,7 +108,7 @@ function App() {
   };
 
   return (
-    <div className="App">
+    <div className="app-container">
       <Header
         canEdit={canEdit(location.pathname)}
         isInEditMode={isInEditMode}
@@ -147,6 +148,7 @@ function App() {
           element={<p>The page you are looking for does not exist</p>}
         />
       </Routes>
+      <Footer />
     </div>
   );
 }
