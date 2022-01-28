@@ -1,5 +1,6 @@
 import StudentModel from "../../models/StudentModel";
 import { useEffect, useState } from "react";
+import ListCheckbox from "../UI/ListCheckbox";
 import "../../general-css/general.css";
 import styles from "./Student.module.css";
 
@@ -32,8 +33,8 @@ const Student: React.FC<{
       onClick={studentClickHandler}
       className={`list-item ${styles["grid__3-col"]}`}
     >
-      {props.isInEditMode && <input checked={isSelected} type="checkbox" />}
-      <img src={props.img} alt="A person" />
+      {props.isInEditMode && <ListCheckbox checked={isSelected} />}
+      <img src={props.img} alt="A person" className={styles.img} />
       {props.student.name}
     </li>
   );

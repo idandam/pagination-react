@@ -1,4 +1,17 @@
 .grid__3-col {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  position: relative;
+  grid-template-columns: min-content min-content max-content;
+  align-items: center;
+  justify-items: center;
+  gap: 1.6rem;
+}
+
+.img {
+  height: 4.8rem;
+  border-radius: 50%;
+  grid-column: 2/3;
+}
+input {
+  border-radius: 50%;
 }
