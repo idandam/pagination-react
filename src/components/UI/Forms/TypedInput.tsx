@@ -1,3 +1,4 @@
+import { ReactComponentElement } from "react";
 import styles from "./TypedInput.module.css";
 
 const TypedInput: React.FC<{
@@ -5,6 +6,8 @@ const TypedInput: React.FC<{
   name: string;
   text: string;
   value: string;
+  img: string;
+  alt: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onBlur: (event: React.FocusEvent<HTMLInputElement>) => void;
   hasError?: boolean;
@@ -15,6 +18,7 @@ const TypedInput: React.FC<{
 
   return (
     <div className={styles.container}>
+      <img src={props.img} alt={props.alt} className={styles.img} />
       <label htmlFor={props.id} className={styles.label}>
         {props.text}
       </label>

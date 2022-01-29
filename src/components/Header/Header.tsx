@@ -1,5 +1,6 @@
 import "../../general-css/general.css";
 import styles from "./Header.module.css";
+import hat from "../../img/svg/academic-cap.svg";
 
 const Header: React.FC<{
   canEdit: boolean;
@@ -14,7 +15,10 @@ const Header: React.FC<{
 
   return (
     <header className={styles.header}>
-      <p className={styles.title}>Students</p>
+      <div className={styles["title-container"]}>
+        <img src={hat} alt={"academic hat"} className={styles.icon} />
+        <p>Students</p>
+      </div>
       {props.canEdit && (
         <div className={styles["control-btns"]}>
           {props.isInEditMode && (

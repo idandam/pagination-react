@@ -11,9 +11,7 @@ const Checkbox: React.FC<{
   return (
     <div className={styles.container}>
       <input {...props} className={styles.input} />
-      <label htmlFor={props.id}>
-        {props.text}
-      </label>
+      <label htmlFor={props.id}>{props.text}</label>
       <span className={styles.checkmark}></span>
     </div>
   );

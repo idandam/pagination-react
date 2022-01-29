@@ -3,8 +3,14 @@ import StudentModel from "../../models/StudentModel";
 import useInput from "../hooks/use-input";
 import Checkbox from "../UI/Forms/Checkbox";
 import TypedInput from "../UI/Forms/TypedInput";
+
 import "../../general-css/general.css";
 import styles from "./StudentDetails.module.css";
+
+import book from "../../img/svg/book-open.svg";
+import cake from "../../img/svg/cake.svg";
+import mail from "../../img/svg/mail.svg";
+import user from "../../img/svg/user-circle.svg";
 
 const StudentDetails: React.FC<{
   student: StudentModel;
@@ -92,6 +98,8 @@ const StudentDetails: React.FC<{
           name="name"
           text="Name"
           value={name}
+          img={user}
+          alt="student name"
           onChange={nameChangedHandler}
           onBlur={nameBlurHandler}
           hasError={nameHasError}
@@ -101,6 +109,8 @@ const StudentDetails: React.FC<{
           name="age"
           text="Age"
           value={age}
+          img={cake}
+          alt="student age"
           onChange={ageChangedHandler}
           onBlur={ageBlurHandler}
           hasError={ageHasError}
@@ -110,6 +120,8 @@ const StudentDetails: React.FC<{
           name="school"
           text="School"
           value={school}
+          img={book}
+          alt="student school"
           onChange={schoolChangedHandler}
           onBlur={schoolBlurHandler}
           hasError={schoolHasError}
@@ -121,6 +133,8 @@ const StudentDetails: React.FC<{
           text="Email"
           value={email}
           type="email"
+          img={mail}
+          alt="user email address"
           onChange={emailChangedHandler}
           onBlur={emailBlurHandler}
           hasError={emailHasError}

@@ -30,3 +30,8 @@
 .error {
   color: var(--err-msg-color);
 }
+
+.img {
+  height: 2.4rem;
+  font: var(--color-primary);
+}
