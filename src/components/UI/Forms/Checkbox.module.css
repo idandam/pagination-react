@@ -1,0 +1,13 @@
+.container {
+  display: flex;
+  gap: 0.8rem;
+  align-items: center;
+  align-self: center;
+  /* justify-self: center; */
+}
+
+
+.input {
+  width: 1.8rem;
+  height: 1.8rem;
+}

@@ -3,15 +3,27 @@
   --color-primary-light: #65aeae;
   --color-primary-dark: #327b7b;
 
-  --color-header-footer: #ecf5f5;
+  --focus-box-shadow: rgba(50, 123, 123, 0.5);
 
-  --color-header-btn: #204d4d;
+  --btn-color: #ecf5f5;
+  --btn-bg-color: #204d4d;
+  --btn-hover: #193e3e;
+  --btn-focus-box-shadow: #2c6c6c;
+
+  --input-bg-color: #ecf5f5;
+
+  --err-msg-color: #b95353;
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+*:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.6rem var(--focus-box-shadow);
 }
 
 html {

@@ -3,6 +3,8 @@ import StudentModel from "../../models/StudentModel";
 import useInput from "../hooks/use-input";
 import Checkbox from "../UI/Forms/Checkbox";
 import TypedInput from "../UI/Forms/TypedInput";
+import "../../general-css/general.css";
+import styles from "./StudentDetails.module.css";
 
 const StudentDetails: React.FC<{
   student: StudentModel;
@@ -83,55 +85,59 @@ const StudentDetails: React.FC<{
   };
 
   return (
-    <form onSubmit={submitHandler}>
-      <TypedInput
-        id="name"
-        name="name"
-        text="Name"
-        value={name}
-        onChange={nameChangedHandler}
-        onBlur={nameBlurHandler}
-        hasError={nameHasError}
-      />
-      <TypedInput
-        id="age"
-        name="age"
-        text="Age"
-        value={age}
-        onChange={ageChangedHandler}
-        onBlur={ageBlurHandler}
-        hasError={ageHasError}
-      />
-      <TypedInput
-        id="school"
-        name="school"
-        text="School"
-        value={school}
-        onChange={schoolChangedHandler}
-        onBlur={schoolBlurHandler}
-        hasError={schoolHasError}
-      />
+    <div className="container">
+      <form onSubmit={submitHandler} className={styles.form}>
+        <TypedInput
+          id="name"
+          name="name"
+          text="Name"
+          value={name}
+          onChange={nameChangedHandler}
+          onBlur={nameBlurHandler}
+          hasError={nameHasError}
+        />
+        <TypedInput
+          id="age"
+          name="age"
+          text="Age"
+          value={age}
+          onChange={ageChangedHandler}
+          onBlur={ageBlurHandler}
+          hasError={ageHasError}
+        />
+        <TypedInput
+          id="school"
+          name="school"
+          text="School"
+          value={school}
+          onChange={schoolChangedHandler}
+          onBlur={schoolBlurHandler}
+          hasError={schoolHasError}
+        />
 
-      <TypedInput
-        id="email"
-        name="email"
-        text="Email"
-        value={email}
-        type="email"
-        onChange={emailChangedHandler}
-        onBlur={emailBlurHandler}
-        hasError={emailHasError}
-      />
-      <Checkbox
-        id="graduated"
-        name="graduated"
-        text="Graduated"
-        type="checkbox"
-        checked={graduated}
-        onChange={graduatedChangeHandler}
-      />
-      <button disabled={!isFormValid}>Submit</button>
-    </form>
+        <TypedInput
+          id="email"
+          name="email"
+          text="Email"
+          value={email}
+          type="email"
+          onChange={emailChangedHandler}
+          onBlur={emailBlurHandler}
+          hasError={emailHasError}
+        />
+        <Checkbox
+          id="graduated"
+          name="graduated"
+          text="Graduated"
+          type="checkbox"
+          checked={graduated}
+          onChange={graduatedChangeHandler}
+        />
+        <button disabled={!isFormValid} className={`btn ${styles.btn}`}>
+          Submit
+        </button>
+      </form>
+    </div>
   );
 };
 

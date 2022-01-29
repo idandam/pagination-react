@@ -1,0 +1,9 @@
+
+.form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 3.2rem;
+  row-gap: 2.4rem;
+  margin-top: 4.9rem;
+  font-size: 1.8rem;
+}

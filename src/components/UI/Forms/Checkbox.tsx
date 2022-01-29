@@ -1,3 +1,5 @@
+import styles from "./Checkbox.module.css";
+
 const Checkbox: React.FC<{
   id: string;
   name: string;
@@ -7,9 +9,12 @@ const Checkbox: React.FC<{
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }> = (props) => {
   return (
-    <div>
-      <label htmlFor={props.id}>{props.text}</label>
-      <input {...props} />
+    <div className={styles.container}>
+      <input {...props} className={styles.input} />
+      <label htmlFor={props.id}>
+        {props.text}
+      </label>
+      <span className={styles.checkmark}></span>
     </div>
   );
 };

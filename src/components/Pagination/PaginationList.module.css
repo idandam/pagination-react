@@ -15,7 +15,7 @@
   cursor: pointer;
 }
 
-.btn:hover {
+.btn:hover:not(:disabled) {
   background: var(--color-primary);
 }
 
@@ -24,7 +24,7 @@
   stroke: var(--color-primary);
 }
 
-.btn:hover .btn__icon {
+.btn:hover:not(:disabled) .btn__icon {
   stroke: #fff;
 }
 
@@ -38,7 +38,7 @@
   cursor: pointer;
 }
 
-.btn__page:hover {
+.btn__page:hover:not(:disabled) {
   border-radius: 50%;
   background: var(--color-primary);
   color: #fff;
@@ -48,4 +48,9 @@
   border-radius: 50%;
   background: var(--color-primary);
   color: #fff;
+}
+
+.container *:disabled {
+  opacity: 0.5;
+  cursor: default !important;
 }
