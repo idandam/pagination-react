@@ -21,7 +21,7 @@
   gap: 1.2rem;
 }
 
-.btn:focus {
+.btn:focus-visible {
   box-shadow: 0 0 0 0.6rem var(--btn-focus-box-shadow);
 }
 
