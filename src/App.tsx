@@ -72,7 +72,7 @@ function App() {
   const editModeHandler = (): void => {
     setIsInEditMode((isInEditMode) => {
       // If this is true then in the next render cycle it will be false
-      // which means that we our not in edit mode
+      // which means that we're not in edit mode
       if (isInEditMode) {
         setSelected([]);
       }
