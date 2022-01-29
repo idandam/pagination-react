@@ -110,7 +110,7 @@ function App() {
   return (
     <div className="app-container">
       <Header
-        canEdit={canEdit(location.pathname)}
+        canEdit={canEdit(location.pathname, students.length)}
         isInEditMode={isInEditMode}
         canDelete={selected.length > 0}
         onEditClick={editModeHandler}

@@ -1,11 +1,9 @@
-import students from "../models/students";
-
 /**
- * This method should actually do the matching with with a regular expression in a real app
+ *
  * @param pathname
- * @returns true if pathname === "/students" or pathname === "/students/"
+ * @returns true if the main content is the students, false otherwise
  */
-const canEdit = (pathname: string): boolean => {
-  return pathname.split("/").join("") === "students";
+const canEdit = (pathname: string, numOfStudents: number): boolean => {
+  return pathname.split("/").join("") === "students" && numOfStudents > 0;
 };
 export default canEdit;
