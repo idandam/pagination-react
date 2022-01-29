@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { INITIAL_NUM_PAGES_TO_DISPLAY } from "../../constants/constants";
 import calcPages from "../../Utils/calcPages";
@@ -10,6 +10,14 @@ import PaginationList from "./PaginationList";
 import getStartPageOffset from "../../Utils/getStartPageOffset";
 import "../../general-css/general.css";
 import styles from "./Pagination.module.css";
+
+// Note on scrolling after a page was changed:
+// Since there're only 6 list items,
+// I tought it will be a best user experience not to scroll to the top of the
+// student list after a page was changed.
+
+// Another solution is to make the pagination list sticky at the bottom. I didn't go
+// for that solution however.
 
 const Pagination: React.FC<{
   students: StudentModel[];
@@ -54,7 +62,7 @@ const Pagination: React.FC<{
     return getConsecutivePages(startPageOffset, maxPagesToDisplay);
   };
   return (
-    <main className="container grid__1-col">
+    <main className={styles.container}>
       <h1 className={styles.title}>{props.title}</h1>
       <Students
         students={getModelsInRange()}
