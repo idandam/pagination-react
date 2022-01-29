@@ -13,4 +13,6 @@
 .title {
   margin-top: 1.2rem;
   font-size: 2.8rem;
+  letter-spacing: 1px;
+  color: #444;
 }
