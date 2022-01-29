@@ -66,6 +66,7 @@ const Pagination: React.FC<{
         onPreviousPage={previousPageHandler}
         onNextPage={nextPageHandler}
         onPageChange={pageChangeHandler}
+        currPage={currPage}
         inEditMode={props.isInEditMode}
       />
     </main>

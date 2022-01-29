@@ -1,0 +1,50 @@
+.container {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  margin-bottom: 1.2rem;
+}
+
+.btn {
+  border: 1px solid var(--color-primary);
+  height: 4.8rem;
+  width: 4.8rem;
+  border-radius: 50%;
+  background: none;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: var(--color-primary);
+}
+
+.btn__icon {
+  height: 2.4rem;
+  stroke: var(--color-primary);
+}
+
+.btn:hover .btn__icon {
+  stroke: #fff;
+}
+
+.btn__page {
+  height: 3.6rem;
+  width: 3.6rem;
+  font-size: 1.8rem;
+  color: #343434;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.btn__page:hover {
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.btn__page.btn__page--current {
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: #fff;
+}
