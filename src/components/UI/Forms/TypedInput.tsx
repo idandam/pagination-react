@@ -1,4 +1,3 @@
-import { ReactComponentElement } from "react";
 import styles from "./TypedInput.module.css";
 
 const TypedInput: React.FC<{

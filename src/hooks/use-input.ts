@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 const useInput = (
   validate: (value: string) => boolean,
@@ -7,7 +7,7 @@ const useInput = (
   const [value, setValue] = useState<string>(initialValue);
   const [isTouched, setIsTouched] = useState(false);
 
-  const isValid = validate(value);
+  let isValid = validate(value);
   const hasError = !isValid && isTouched;
 
   const valueChangeHandler = (

@@ -11,6 +11,7 @@ import book from "../../img/svg/book-open.svg";
 import cake from "../../img/svg/cake.svg";
 import mail from "../../img/svg/mail.svg";
 import user from "../../img/svg/user-circle.svg";
+import emailRegExp from "../../constants/emailRegExp";
 
 const StudentDetails: React.FC<{
   student: StudentModel;
@@ -56,10 +57,7 @@ const StudentDetails: React.FC<{
     valueChangeHandler: emailChangedHandler,
     inputBlurHandler: emailBlurHandler,
     reset: resetEmail,
-  } = useInput(
-    (value) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value),
-    student.email
-  );
+  } = useInput((value) => emailRegExp.test(value), student.email);
 
   const graduatedChangeHandler = (
     event: React.ChangeEvent<HTMLInputElement>
