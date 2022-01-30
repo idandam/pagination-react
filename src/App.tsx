@@ -15,6 +15,7 @@ import Header from "./components/Header/Header";
 import canEdit from "./Utils/canEdit";
 import Footer from "./components/Footer/Footer";
 import getPage from "./Utils/getPage";
+import Message from "./components/UI/Message";
 
 function App() {
   const [isInEditMode, setIsInEditMode] = useState(false);
@@ -159,7 +160,7 @@ function App() {
                 currPage={currPage}
               />
             ) : (
-              <p>No students</p>
+              <Message message="No students" />
             )
           }
         />
@@ -174,7 +175,9 @@ function App() {
         />
         <Route
           path="*"
-          element={<p>The page you are looking for does not exist</p>}
+          element={
+            <Message message="The page you are looking for does not exist" />
+          }
         />
       </Routes>
       <Footer />

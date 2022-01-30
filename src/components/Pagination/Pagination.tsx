@@ -63,7 +63,7 @@ const Pagination: React.FC<{
     return getConsecutivePages(startPageOffset, maxPagesToDisplay);
   };
   return (
-    <main className={styles.container}>
+    <main className={`container ${styles.container}`}>
       <h1 className={styles.title}>{props.title}</h1>
       <Students
         students={getModelsInRange()}
