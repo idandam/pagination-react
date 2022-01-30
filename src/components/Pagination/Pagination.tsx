@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
+import React from "react";
 import { INITIAL_NUM_PAGES_TO_DISPLAY } from "../../constants/constants";
 import calcPages from "../../Utils/calcPages";
 import getConsecutivePages from "../../Utils/getConsecutivePages";
@@ -10,6 +9,7 @@ import PaginationList from "./PaginationList";
 import getStartPageOffset from "../../Utils/getStartPageOffset";
 import "../../general-css/general.css";
 import styles from "./Pagination.module.css";
+
 
 // Note on scrolling after a page was changed:
 // Since there're only 6 list items,
@@ -25,24 +25,26 @@ const Pagination: React.FC<{
   maxStudentsPerPage: number;
   isInEditMode: boolean;
   onStudentClick: (id: string) => void;
+  onPageChange: (value: number, isOffset?:boolean) => void;
+  currPage: number;
 }> = (props) => {
-  const [currPage, setCurrPage] = useState(1);
+  const { currPage, onPageChange } = props;
   const pages = calcPages(props.students.length);
 
   const nextPageHandler = (): void => {
     if (currPage < pages) {
-      setCurrPage((page) => page + 1);
+      onPageChange(1, true);
     }
   };
 
   const previousPageHandler = (): void => {
     if (currPage > 1) {
-      setCurrPage((page) => page - 1);
+      onPageChange(-1, true);
     }
   };
 
   const pageChangeHandler = (event: any): void => {
-    setCurrPage(Number(event.target.textContent));
+    onPageChange(Number(event.target.textContent));
   };
 
   const getModelsInRange = (): StudentModel[] => {

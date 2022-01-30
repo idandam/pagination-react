@@ -7,6 +7,8 @@ const StudentDetailsWrapper: React.FC<{
   onUpdateStudent: (updatedStudent: StudentModel) => void;
 }> = (props) => {
   const { studentId } = useParams();
+
+  
   const student = props.students.find((student) => student.id === studentId);
   return student ? (
     <StudentDetails student={student} onUpdateStudent={props.onUpdateStudent} />

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import StudentModel from "../../models/StudentModel";
-import useInput from "../hooks/use-input";
+import useInput from "../../hooks/use-input";
 import Checkbox from "../UI/Forms/Checkbox";
 import TypedInput from "../UI/Forms/TypedInput";
 
@@ -11,6 +11,7 @@ import book from "../../img/svg/book-open.svg";
 import cake from "../../img/svg/cake.svg";
 import mail from "../../img/svg/mail.svg";
 import user from "../../img/svg/user-circle.svg";
+import { useNavigate } from "react-router-dom";
 
 const StudentDetails: React.FC<{
   student: StudentModel;
@@ -88,6 +89,11 @@ const StudentDetails: React.FC<{
       graduated,
       id: student.id,
     });
+
+    // The student exist since we checked for it in the wrapper.
+    // And since we're using local storage, then I will just indicate here that
+    // the student was save. In a real situaion it would've been conducted differently.
+    //setSaved(true);
   };
 
   return (

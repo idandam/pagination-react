@@ -4,5 +4,20 @@
   column-gap: 3.2rem;
   row-gap: 2.4rem;
   margin-top: 4.9rem;
+  margin-bottom: 1.2rem;
   font-size: 1.8rem;
+  color: #444;
+}
+
+.btn {
+  position: relative;
+}
+.saved::after {
+  content: "Saved...!";
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  transform: translateY(-50%);
+  margin-left: 1.2rem;
+  color: #444;
 }

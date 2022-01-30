@@ -8,21 +8,23 @@ import {
 } from "react-router-dom";
 import Pagination from "./components/Pagination/Pagination";
 import StudentModel from "./models/StudentModel";
-// import studentsMock from "./models/students";
 import { MAX_STUDENTS_PER_PAGE } from "./constants/constants";
 import StudentDetailsWrapper from "./components/Students/StudentDetailsWrapper";
 import "./App.css";
 import Header from "./components/Header/Header";
 import canEdit from "./Utils/canEdit";
 import Footer from "./components/Footer/Footer";
+import findIndex from "./Utils/findIndex";
+import getPage from "./Utils/getPage";
 
 function App() {
   const [isInEditMode, setIsInEditMode] = useState(false);
   const [students, setStudents] = useState<StudentModel[]>([]);
   const [selected, setSelected] = useState<string[]>([]);
+  const [currPage, setCurrPage] = useState<number>(1);
 
-  const location = useLocation();
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const students = localStorage.getItem("students");
@@ -95,15 +97,30 @@ function App() {
 
   const studentUpdatedHandler = (updatedStudent: StudentModel): void => {
     setStudents((students) => {
-      const i = students.findIndex(
+      const position = students.findIndex(
         (student) => student.id === updatedStudent.id
       );
-      if (i > -1) {
-        const updatedStudents = [...students];
-        updatedStudents[i] = updatedStudent;
-        return updatedStudents;
+      // The student indeed exist, otherwise we have been referenced to another page.
+      const updatedStudents = [...students];
+      updatedStudents[position] = updatedStudent;
+      setCurrPage(getPage(position, MAX_STUDENTS_PER_PAGE));
+      navigate("/students");
+      return updatedStudents;
+    });
+  };
+
+  /**
+   *
+   * @param value an offset to the current page if @var {isOffset} is true,
+   * else, the number of the page.
+   * @param isOffset  true if @var {value} is an offset to the current page, false otherwise.
+   */
+  const pageChangeHandler = (value: number, isOffset?: boolean): void => {
+    setCurrPage((page) => {
+      if (isOffset) {
+        return page + value;
       }
-      return students;
+      return value;
     });
   };
 
@@ -128,6 +145,8 @@ function App() {
                 maxStudentsPerPage={MAX_STUDENTS_PER_PAGE}
                 isInEditMode={isInEditMode}
                 onStudentClick={studentClickHandler}
+                onPageChange={pageChangeHandler}
+                currPage={currPage}
               />
             ) : (
               <p>No students</p>
