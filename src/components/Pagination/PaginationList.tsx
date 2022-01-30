@@ -7,13 +7,14 @@ const PaginationList: React.FC<{
   onPageChange: (event: any) => void;
   currPage: number;
   inEditMode: boolean;
+  pages:number;
 }> = (props) => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>
         <button
           onClick={props.onPreviousPage}
-          disabled={props.inEditMode}
+          disabled={props.inEditMode || props.currPage === 1}
           className={styles.btn}
         >
           <svg
@@ -45,7 +46,7 @@ const PaginationList: React.FC<{
         ))}
         <button
           onClick={props.onNextPage}
-          disabled={props.inEditMode}
+          disabled={props.inEditMode || props.currPage === props.pages}
           className={styles.btn}
         >
           <svg

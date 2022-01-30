@@ -11,7 +11,6 @@ import book from "../../img/svg/book-open.svg";
 import cake from "../../img/svg/cake.svg";
 import mail from "../../img/svg/mail.svg";
 import user from "../../img/svg/user-circle.svg";
-import { useNavigate } from "react-router-dom";
 
 const StudentDetails: React.FC<{
   student: StudentModel;

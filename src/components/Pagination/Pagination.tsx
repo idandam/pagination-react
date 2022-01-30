@@ -10,7 +10,6 @@ import getStartPageOffset from "../../Utils/getStartPageOffset";
 import "../../general-css/general.css";
 import styles from "./Pagination.module.css";
 
-
 // Note on scrolling after a page was changed:
 // Since there're only 6 list items,
 // I tought it will be a best user experience not to scroll to the top of the
@@ -25,7 +24,7 @@ const Pagination: React.FC<{
   maxStudentsPerPage: number;
   isInEditMode: boolean;
   onStudentClick: (id: string) => void;
-  onPageChange: (value: number, isOffset?:boolean) => void;
+  onPageChange: (value: number, isOffset?: boolean) => void;
   currPage: number;
 }> = (props) => {
   const { currPage, onPageChange } = props;
@@ -78,6 +77,7 @@ const Pagination: React.FC<{
         onPageChange={pageChangeHandler}
         currPage={currPage}
         inEditMode={props.isInEditMode}
+        pages={pages}
       />
     </main>
   );
