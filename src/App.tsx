@@ -14,17 +14,25 @@ import "./App.css";
 import Header from "./components/Header/Header";
 import canEdit from "./Utils/canEdit";
 import Footer from "./components/Footer/Footer";
-import findIndex from "./Utils/findIndex";
 import getPage from "./Utils/getPage";
 
 function App() {
   const [isInEditMode, setIsInEditMode] = useState(false);
   const [students, setStudents] = useState<StudentModel[]>([]);
   const [selected, setSelected] = useState<string[]>([]);
-  const [currPage, setCurrPage] = useState<number>(1);
+  const [currPage, setCurrPage] = useState(1);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const navigate = useNavigate();
   const location = useLocation();
+
+  useEffect(() => {
+    if (isSubmitted) {
+      setTimeout(() => {
+        setIsSubmitted(false);
+      }, 3500);
+    }
+  }, [isSubmitted]);
 
   useEffect(() => {
     const students = localStorage.getItem("students");
@@ -104,6 +112,7 @@ function App() {
       const updatedStudents = [...students];
       updatedStudents[position] = updatedStudent;
       setCurrPage(getPage(position, MAX_STUDENTS_PER_PAGE));
+      setIsSubmitted(true);
       navigate("/students");
       return updatedStudents;
     });
@@ -132,6 +141,7 @@ function App() {
         canDelete={selected.length > 0}
         onEditClick={editModeHandler}
         onDeleteClick={deleteStudentsHandler}
+        showSavedMessage={isSubmitted}
       />
       <Routes>
         <Route path="/" element={<Navigate to="/students" />} />

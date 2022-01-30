@@ -8,13 +8,14 @@ const Header: React.FC<{
   canDelete: boolean;
   onEditClick: () => void;
   onDeleteClick: () => void;
+  showSavedMessage:boolean;
 }> = (props) => {
   const editClickandler = () => {
     props.onEditClick();
   };
 
   return (
-    <header className={styles.header}>
+    <header className={`${styles.header} ${props.showSavedMessage? styles.saved:""}`}>
       <div className={styles["title-container"]}>
         <img src={hat} alt={"academic hat"} className={styles.icon} />
         <p>Students</p>
