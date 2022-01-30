@@ -10,12 +10,14 @@ import Pagination from "./components/Pagination/Pagination";
 import StudentModel from "./models/StudentModel";
 import { MAX_STUDENTS_PER_PAGE } from "./constants/constants";
 import StudentDetailsWrapper from "./components/Students/StudentDetailsWrapper";
-import "./App.css";
 import Header from "./components/Header/Header";
 import canEdit from "./Utils/canEdit";
 import Footer from "./components/Footer/Footer";
 import getPage from "./Utils/getPage";
 import Message from "./components/UI/Message";
+import STUDENTS_RESOURCE from "./constants/studentsResource";
+import "./App.css";
+import "./general-css/general.css";
 
 function App() {
   const [isInEditMode, setIsInEditMode] = useState(false);
@@ -23,9 +25,47 @@ function App() {
   const [selected, setSelected] = useState<string[]>([]);
   const [currPage, setCurrPage] = useState(1);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  // There's only an error for the http get request for the students resource,
+  // since it' a mock. However, in real projects we need to check additional
+  // error, (eg., response.ok )
+  const [isError, setIsError] = useState(false);
 
   const navigate = useNavigate();
   const location = useLocation();
+
+  useEffect(() => {
+    if (isLoading) {
+      let tid = setTimeout(() => {
+        setIsError(true);
+      }, 8000);
+
+      return () => {
+        clearTimeout(tid);
+      };
+    }
+  }, [isLoading]);
+
+  useEffect(() => {
+    // I could put it inside the else, but for the sake of completeness...
+    setIsLoading(true);
+
+    const students = localStorage.getItem("students");
+    if (students && students !== "[]") {
+      setStudents(JSON.parse(students));
+      setIsLoading(false);
+    } else {
+      fetch(STUDENTS_RESOURCE)
+        .then((response) => response.json())
+        .then((result) => {
+          setStudents(result.data);
+          setIsLoading(false);
+        })
+        .catch(() => {
+          setIsError(true);
+        });
+    }
+  }, []);
 
   useEffect(() => {
     if (isSubmitted) {
@@ -34,20 +74,6 @@ function App() {
       }, 3500);
     }
   }, [isSubmitted]);
-
-  useEffect(() => {
-    const students = localStorage.getItem("students");
-    if (students && students !== "[]") {
-      setStudents(JSON.parse(students));
-    } else {
-      fetch("https://run.mocky.io/v3/00c7dbe8-7e51-41af-bf1c-05a4a60fa47c")
-        .then((response) => response.json())
-        .then((result) => {
-          setStudents(result.data);
-        })
-        .catch((err) => console.log(err));
-    }
-  }, []);
 
   useEffect(() => {
     localStorage.setItem("students", JSON.stringify(students));
@@ -144,42 +170,52 @@ function App() {
         onDeleteClick={deleteStudentsHandler}
         showSavedMessage={isSubmitted}
       />
-      <Routes>
-        <Route path="/" element={<Navigate to="/students" />} />
-        <Route
-          path="students"
-          element={
-            students.length > 0 ? (
-              <Pagination
+      {isError && (
+        <Message message="An error occurred, please try again later" />
+      )}
+      {!isError && isLoading && (
+        <div className="container container__centered--v">
+          <div className="loader" />
+        </div>
+      )}
+      {!isError && !isLoading && (
+        <Routes>
+          <Route path="/" element={<Navigate to="/students" />} />
+          <Route
+            path="students"
+            element={
+              students.length > 0 ? (
+                <Pagination
+                  students={students}
+                  title="Our Students"
+                  maxStudentsPerPage={MAX_STUDENTS_PER_PAGE}
+                  isInEditMode={isInEditMode}
+                  onStudentClick={studentClickHandler}
+                  onPageChange={pageChangeHandler}
+                  currPage={currPage}
+                />
+              ) : (
+                <Message message="No students" />
+              )
+            }
+          />
+          <Route
+            path="students/:studentId"
+            element={
+              <StudentDetailsWrapper
                 students={students}
-                title="Our Students"
-                maxStudentsPerPage={MAX_STUDENTS_PER_PAGE}
-                isInEditMode={isInEditMode}
-                onStudentClick={studentClickHandler}
-                onPageChange={pageChangeHandler}
-                currPage={currPage}
+                onUpdateStudent={studentUpdatedHandler}
               />
-            ) : (
-              <Message message="No students" />
-            )
-          }
-        />
-        <Route
-          path="students/:studentId"
-          element={
-            <StudentDetailsWrapper
-              students={students}
-              onUpdateStudent={studentUpdatedHandler}
-            />
-          }
-        />
-        <Route
-          path="*"
-          element={
-            <Message message="The page you are looking for does not exist" />
-          }
-        />
-      </Routes>
+            }
+          />
+          <Route
+            path="*"
+            element={
+              <Message message="The page you are looking for does not exist" />
+            }
+          />
+        </Routes>
+      )}
       <Footer />
     </div>
   );

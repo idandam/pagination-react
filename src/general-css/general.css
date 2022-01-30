@@ -37,6 +37,25 @@
   background-color: var(--btn-hover);
 }
 
-.container__message {
+.container__centered--v {
   justify-content: center;
+}
+
+.loader {
+  border: 1.6rem solid var(--loader-border-color);
+  border-top: 1.6rem solid var(--color-primary);
+  border-radius: 50%;
+  width: 12rem;
+  height: 12rem;
+  margin: 0 auto;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
