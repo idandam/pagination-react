@@ -84,4 +84,10 @@
   .title-container {
     font-size: 1.8rem;
   }
+
+  .saved::after {
+    padding: 0.8rem 1.2rem;
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.3);
+    font-size: 1.2rem;
+  }
 }

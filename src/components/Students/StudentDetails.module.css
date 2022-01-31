@@ -12,12 +12,9 @@
 .btn {
   position: relative;
 }
-.saved::after {
-  content: "Saved...!";
-  position: absolute;
-  top: 50%;
-  left: 100%;
-  transform: translateY(-50%);
-  margin-left: 1.2rem;
-  color: #444;
+
+@media (max-width: 37em) and (min-height: 40em) {
+  .form {
+    grid-template-columns: 1fr;
+  }
 }
