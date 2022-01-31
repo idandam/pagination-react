@@ -37,7 +37,7 @@ const Student: React.FC<{
     >
       {props.isInEditMode && <ListCheckbox checked={isSelected} />}
       <img src={props.img} alt="A person" className={styles.img} />
-      {props.student.name}
+      <p>{props.student.name}</p>
     </li>
   );
 };
