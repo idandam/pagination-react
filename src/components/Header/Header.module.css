@@ -1,7 +1,7 @@
 .header {
-  position: relative;
+  position: sticky;
+  top: 0;
   display: flex;
-  flex-shrink: 0;
   justify-content: space-between;
   align-items: center;
   min-height: 7.2rem;
@@ -67,5 +67,21 @@
 
   100% {
     opacity: 0;
+  }
+}
+
+@media (max-width: 37em) and (min-height: 40em) {
+  .header {
+    min-height: 5.5rem;
+  }
+  .btn {
+    font-size: 1.2rem;
+    padding: 0.8rem 1.8rem;
+  }
+  .icon {
+    height: 2.8rem;
+  }
+  .title-container {
+    font-size: 1.8rem;
   }
 }

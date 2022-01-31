@@ -17,6 +17,31 @@
   --loader-border-color: #f3f3f3;
 }
 
+*,
+*::after,
+::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+* :focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 0.6rem var(--focus-box-shadow);
+}
+
+#root {
+  height: 100%;
+  min-width: fit-content;
+  display: flex;
+  flex-direction: column;
+}
+
+html,
+body {
+  height: 100%;
+}
+
 html {
   font-size: 62.5%;
 }
@@ -31,17 +56,40 @@ body {
   font-size: 2.2rem;
 }
 
-*,
-*::after,
-::before {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+@media (max-width: 50em) {
+  html {
+    font-size: 50%;
+  }
+}
+@media (max-width: 32em) {
+  html {
+    font-size: 40%;
+  }
+}
+@media (max-width: 25em) {
+  html {
+    font-size: 35%;
+  }
 }
 
-* :focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 0.6rem var(--focus-box-shadow);
+@media (max-width: 50em) and (min-height: 40em) {
+  html {
+    font-size: 50%;
+  }
+}
+@media (max-width: 37em) and (min-height: 40em) {
+  html {
+    font-size: 50%;
+  }
+}
+@media (max-width: 25em) and (min-height: 40em) {
+  html {
+    font-size: 50%;
+  }
 }
 
-
+@media (max-width: 18em) and (min-height: 40em) {
+  html {
+    font-size: 40%;
+  }
+}

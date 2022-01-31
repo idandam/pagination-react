@@ -16,7 +16,7 @@ import Footer from "./components/Footer/Footer";
 import getPage from "./Utils/getPage";
 import Message from "./components/UI/Message";
 import STUDENTS_RESOURCE from "./constants/studentsResource";
-import "./App.css";
+import styles from "./App.module.css";
 import "./general-css/general.css";
 
 function App() {
@@ -161,7 +161,7 @@ function App() {
   };
 
   return (
-    <div className="app-container">
+    <>
       <Header
         canEdit={canEdit(location.pathname, students.length)}
         isInEditMode={isInEditMode}
@@ -217,7 +217,7 @@ function App() {
         </Routes>
       )}
       <Footer />
-    </div>
+    </>
   );
 }
 

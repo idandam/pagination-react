@@ -1,7 +1,7 @@
 .wrapper {
-  width: 100%;
   position: sticky;
   bottom: 0;
+  width: 100%;
   display: flex;
   padding: 1.2rem 0;
   box-shadow: 0 -0.2px 9px rgba(0, 0, 0, 0.1);
@@ -10,6 +10,7 @@
   margin-top: auto;
   background-color: #fff;
 }
+
 .container {
   display: flex;
   align-items: center;
