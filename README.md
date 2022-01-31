@@ -8,11 +8,11 @@ The data will be fetched once and it will be presistent using LocalStorage.
 
 ## Endpoints
 
-### _students_
+### /_students_
 
 Custom pagination component - fetching a mock resource width 20 students and showing them in a list with at most 6 students per content page.
 
-### _students/:studentId_
+### /_students/:studentId_
 
 Showing a form with the student details. The form fields can be edited.
 
