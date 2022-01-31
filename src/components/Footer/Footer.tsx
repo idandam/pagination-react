@@ -5,7 +5,7 @@ const Footer = () => {
     <footer className={styles.footer}>
       <p>Copyright &copy; 2022 Idan Damri</p>
       <a
-        href="https://github.com/idandam/memorty"
+        href="https://github.com/idandam/pagination-react/"
         target="_blank"
         rel="noreferrer"
       >
