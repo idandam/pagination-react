@@ -125,6 +125,7 @@ function App() {
           (student) => student.id !== studentId
         );
       });
+
       setSelected([]);
       return updatedStudents;
     });
