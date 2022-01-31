@@ -12,6 +12,7 @@
     var(--color-primary-dark),
     var(--color-primary-light)
   );
+  z-index: 1;
 }
 
 .title-container {
