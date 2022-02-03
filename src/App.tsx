@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+
 import {
   Routes,
   Route,
@@ -6,66 +7,34 @@ import {
   useLocation,
   Navigate,
 } from "react-router-dom";
+
+import useResource from "./hooks/use-resource";
+
 import Pagination from "./components/Pagination/Pagination";
-import StudentModel from "./models/StudentModel";
-import { MAX_STUDENTS_PER_PAGE } from "./constants/constants";
 import StudentDetailsWrapper from "./components/Students/StudentDetailsWrapper";
 import Header from "./components/Header/Header";
 import canEdit from "./Utils/canEdit";
 import Footer from "./components/Footer/Footer";
 import getPage from "./Utils/getPage";
 import Message from "./components/UI/Message";
-import STUDENTS_RESOURCE from "./constants/studentsResource";
-import styles from "./App.module.css";
+
+import StudentModel from "./models/StudentModel";
+
+import { MAX_STUDENTS_PER_PAGE } from "./constants/constants";
+
 import "./general-css/general.css";
 
 function App() {
   const [isInEditMode, setIsInEditMode] = useState(false);
-  const [students, setStudents] = useState<StudentModel[]>([]);
+
   const [selected, setSelected] = useState<string[]>([]);
   const [currPage, setCurrPage] = useState(1);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  // There's only an error for the http get request for the students resource,
-  // since it' a mock. However, in real projects we need to check additional
-  // error, (eg., response.ok )
-  const [isError, setIsError] = useState(false);
+  // students is The resource in this context
+  const { students, setStudents, isLoading, isError } = useResource();
 
   const navigate = useNavigate();
   const location = useLocation();
-
-  useEffect(() => {
-    if (isLoading) {
-      let tid = setTimeout(() => {
-        setIsError(true);
-      }, 8000);
-
-      return () => {
-        clearTimeout(tid);
-      };
-    }
-  }, [isLoading]);
-
-  useEffect(() => {
-    // I could put it inside the else, but for the sake of completeness...
-    setIsLoading(true);
-
-    const students = localStorage.getItem("students");
-    if (students && students !== "[]") {
-      setStudents(JSON.parse(students));
-      setIsLoading(false);
-    } else {
-      fetch(STUDENTS_RESOURCE)
-        .then((response) => response.json())
-        .then((result) => {
-          setStudents(result.data);
-          setIsLoading(false);
-        })
-        .catch(() => {
-          setIsError(true);
-        });
-    }
-  }, []);
 
   useEffect(() => {
     if (isSubmitted) {
@@ -74,10 +43,6 @@ function App() {
       }, 3500);
     }
   }, [isSubmitted]);
-
-  useEffect(() => {
-    localStorage.setItem("students", JSON.stringify(students));
-  }, [students]);
 
   const studentSelectHandler = (
     studentId: string,
@@ -148,7 +113,7 @@ function App() {
 
   /**
    *
-   * @param value an offset to the current page if @var {isOffset} is true,
+   * @param value an offset to the current page if isOffset is true,
    * else, the number of the page.
    * @param isOffset  true if @var {value} is an offset to the current page, false otherwise.
    */
