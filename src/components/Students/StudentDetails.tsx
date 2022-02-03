@@ -38,7 +38,7 @@ const StudentDetails: React.FC<{
     reset: resetAge,
   } = useInput((value) => {
     let n = Number(value);
-    return !isNaN(n) && n > 0;
+    return !isNaN(n) && n > 0 && n < 121;
   }, student.age.toString());
 
   const {
