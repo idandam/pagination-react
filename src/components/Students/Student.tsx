@@ -18,8 +18,9 @@ const Student: React.FC<{
       setIsSelected(false);
     }
   }, [isInEditMode]);
+
   const studentClickHandler = (): void => {
-    if (!props.isInEditMode) {
+    if (!isInEditMode) {
       props.onClick(props.student.id);
     } else {
       setIsSelected((isSelected) => !isSelected);
@@ -35,7 +36,7 @@ const Student: React.FC<{
         isSelected ? styles.selected : ""
       }`}
     >
-      {props.isInEditMode && <ListCheckbox checked={isSelected} />}
+      {isInEditMode && <ListCheckbox defaultChecked={isSelected} />}
       <img src={props.img} alt="A person" className={styles.img} />
       <p>{props.student.name}</p>
     </li>

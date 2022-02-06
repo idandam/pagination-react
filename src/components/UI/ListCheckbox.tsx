@@ -1,10 +1,14 @@
-import styles from "./ListCheckbox.module.css";
+import "../../general-css/general.css";
 
-const ListCheckbox: React.FC<{ checked: boolean }> = (props) => {
+const ListCheckbox: React.FC<{ defaultChecked: boolean }> = (props) => {
   return (
-    <div className={styles.container}>
-      <input type="checkbox" checked={props.checked} />
-      <span className={styles.checkmark}></span>
+    <div className="container__checkbox">
+      <input
+        type="checkbox"
+        defaultChecked={props.defaultChecked}
+        className={`${props.defaultChecked ? "checked" : ""}`}
+      />
+      <span className="checkmark"></span>
     </div>
   );
 };

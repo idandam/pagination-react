@@ -10,18 +10,19 @@ import getStartPageOffset from "../../Utils/getStartPageOffset";
 import "../../general-css/general.css";
 import styles from "./Pagination.module.css";
 
+// TODO - make this component reusable
 const Pagination: React.FC<{
-  students: StudentModel[];
+  data: any[];
   title: string;
-  maxStudentsPerPage: number;
+  maxDataPerPage: number;
   isInEditMode: boolean;
-  onStudentClick: (id: string) => void;
+  onDataClick: (id: string) => void;
   onPageChange: (value: number, isOffset?: boolean) => void;
   currPage: number;
 }> = (props) => {
   let currPage = props.currPage;
   const onPageChange = props.onPageChange;
-  const pages = calcPages(props.students.length);
+  const pages = calcPages(props.data.length);
 
   // Can happen if the user deleted all the student from the current page.
   if (currPage > pages) {
@@ -45,12 +46,12 @@ const Pagination: React.FC<{
   };
 
   const getModelsInRange = (): StudentModel[] => {
-    let range = getIndexRange(currPage, props.students.length);
-    return props.students.slice(range.from, range.to);
+    let range = getIndexRange(currPage, props.data.length);
+    return props.data.slice(range.from, range.to);
   };
 
   const getDisplayedPages = (): number[] => {
-    // Display maximum 3 pages anchors
+    // Display maximum 3 pages in the pagination list
     let maxPagesToDisplay = Math.min(INITIAL_NUM_PAGES_TO_DISPLAY, pages);
     let startPageOffset = getStartPageOffset(
       currPage,
@@ -65,7 +66,7 @@ const Pagination: React.FC<{
       <h1 className={styles.title}>{props.title}</h1>
       <Students
         students={getModelsInRange()}
-        onStudentClick={props.onStudentClick}
+        onStudentClick={props.onDataClick}
         isInEditMode={props.isInEditMode}
       />
       <PaginationList

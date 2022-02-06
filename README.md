@@ -2,10 +2,10 @@
 
 ## Goal
 
-Implement a Two page react app.
+Implement a two page react app.
 The first page will fetch a mock of 20 students and show them using pagination,
 with at most 6 students per page.
-When you click a on a stdudent you will be navigated to the The second page which will show you an editable form with the student details.
+When you click a on a student you will be navigated to the second page which will show you an editable form with the student details.
 The data will be fetched once and it will be presistent using LocalStorage.
 
 ## Pages

@@ -152,11 +152,11 @@ function App() {
             element={
               students.length > 0 ? (
                 <Pagination
-                  students={students}
+                  data={students}
                   title="Our Students"
-                  maxStudentsPerPage={MAX_STUDENTS_PER_PAGE}
+                  maxDataPerPage={MAX_STUDENTS_PER_PAGE}
                   isInEditMode={isInEditMode}
-                  onStudentClick={studentClickHandler}
+                  onDataClick={studentClickHandler}
                   onPageChange={pageChangeHandler}
                   currPage={currPage}
                 />

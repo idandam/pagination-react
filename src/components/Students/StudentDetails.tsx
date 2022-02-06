@@ -152,7 +152,7 @@ const StudentDetails: React.FC<{
           name="graduated"
           text="Graduated"
           type="checkbox"
-          checked={graduated}
+          defaultChecked={graduated}
           onChange={graduatedChangeHandler}
         />
         <button disabled={!isFormValid} className={`btn ${styles.btn}`}>
