@@ -83,6 +83,7 @@
   width: 100%;
   border-radius: 50%;
   background-color: #eee;
+  font-size: 1.8rem;
 }
 
 .container__checkbox input.checked {
@@ -104,4 +105,11 @@
 
 .container__checkbox input.checked + .checkmark:after {
   display: block;
+}
+
+.form__label {
+  display: block;
+  font-size: 1.6rem;
+  font-weight: 500;
+  margin-bottom: 1.8rem;
 }

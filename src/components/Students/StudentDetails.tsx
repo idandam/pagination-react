@@ -3,6 +3,7 @@ import StudentModel from "../../models/StudentModel";
 import useInput from "../../hooks/use-input";
 import Checkbox from "../UI/Forms/Checkbox";
 import TypedInput from "../UI/Forms/TypedInput";
+import SelectInput from "../UI/Forms/SelectInput";
 
 import "../../general-css/general.css";
 import styles from "./StudentDetails.module.css";
@@ -27,7 +28,7 @@ const StudentDetails: React.FC<{
     valueChangeHandler: nameChangedHandler,
     inputBlurHandler: nameBlurHandler,
     reset: resetName,
-  } = useInput((value) => value.trim() !== "", student.name);
+  } = useInput(student.name, (value) => value.trim() !== "");
 
   const {
     value: age,
@@ -36,7 +37,7 @@ const StudentDetails: React.FC<{
     valueChangeHandler: ageChangedHandler,
     inputBlurHandler: ageBlurHandler,
     reset: resetAge,
-  } = useInput((value) => {
+  } = useInput(student.age.toString(), (value) => {
     let n = Number(value);
     return (
       !isNaN(n) &&
@@ -44,7 +45,7 @@ const StudentDetails: React.FC<{
       n < 121 &&
       (Math.floor(n) === n || Math.floor(n * 10) === n * 10)
     );
-  }, student.age.toString());
+  });
 
   const {
     value: school,
@@ -53,7 +54,7 @@ const StudentDetails: React.FC<{
     valueChangeHandler: schoolChangedHandler,
     inputBlurHandler: schoolBlurHandler,
     reset: resetSchool,
-  } = useInput((value) => value.trim() !== "", student.school);
+  } = useInput(student.school);
 
   const {
     value: email,
@@ -62,7 +63,7 @@ const StudentDetails: React.FC<{
     valueChangeHandler: emailChangedHandler,
     inputBlurHandler: emailBlurHandler,
     reset: resetEmail,
-  } = useInput((value) => emailRegExp.test(value), student.email);
+  } = useInput(student.email, (value) => emailRegExp.test(value));
 
   const graduatedChangeHandler = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -123,7 +124,7 @@ const StudentDetails: React.FC<{
           onBlur={ageBlurHandler}
           hasError={ageHasError}
         />
-        <TypedInput
+        <SelectInput
           id="school"
           name="school"
           text="School"
@@ -131,8 +132,6 @@ const StudentDetails: React.FC<{
           img={book}
           alt="student school"
           onChange={schoolChangedHandler}
-          onBlur={schoolBlurHandler}
-          hasError={schoolHasError}
         />
 
         <TypedInput

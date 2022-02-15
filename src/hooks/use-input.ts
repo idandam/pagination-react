@@ -1,17 +1,17 @@
 import React, { useEffect, useRef, useState } from "react";
 
 const useInput = (
-  validate: (value: string) => boolean,
-  initialValue: string
+  initialValue: string,
+  validate?: (value: string) => boolean
 ) => {
   const [value, setValue] = useState<string>(initialValue);
   const [isTouched, setIsTouched] = useState(false);
 
-  let isValid = validate(value);
+  let isValid = validate? validate(value): true;
   const hasError = !isValid && isTouched;
 
   const valueChangeHandler = (
-    event: React.ChangeEvent<HTMLInputElement>
+    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ): void => {
     setValue(event.target.value);
   };

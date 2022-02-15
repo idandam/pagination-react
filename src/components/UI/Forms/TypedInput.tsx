@@ -1,4 +1,6 @@
+import InputWrapper from "./InputWrapper";
 import styles from "./TypedInput.module.css";
+import "../../../general-css/general.css"
 
 const TypedInput: React.FC<{
   id: string;
@@ -16,9 +18,8 @@ const TypedInput: React.FC<{
   delete atrr.hasError;
 
   return (
-    <div className={styles.container}>
-      <img src={props.img} alt={props.alt} className={styles.img} />
-      <label htmlFor={props.id} className={styles.label}>
+    <InputWrapper id={props.id} img={props.img} alt={props.alt}>
+      <label htmlFor={props.id} className="form__label">
         {props.text}
       </label>
       <input {...atrr} required className={styles.input} />
@@ -27,7 +28,7 @@ const TypedInput: React.FC<{
           {props.value.trim() ? `Invalid ${props.name}` : "Required field"}
         </p>
       )}
-    </div>
+    </InputWrapper>
   );
 };
 
